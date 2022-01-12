@@ -1,6 +1,31 @@
 const express = require('express');
+const mongoose = require('mongoose')
+const { MongoClient } = require('mongodb');
+require('dotenv').config({path:'variables.env'})
 const app = express();
 const app2 = express();
+
+// mongoose
+
+mongoose.connect(process.env.MDB_URL, {useNewUrlParser: true}, (err)=>{
+  if(err){
+    console.log(err);    
+  }else{
+    console.log("success");
+  }
+});
+
+// mongodb MongoClient
+
+// const client = new MongoClient(process.env.MDB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   console.log("success");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
+
 // https 로 변경할 예정
 // const https = require("https");
 const vhost = require("vhost");
