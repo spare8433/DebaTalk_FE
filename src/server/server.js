@@ -2,9 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose')
 const { MongoClient } = require('mongodb');
 require('dotenv').config({path:'variables.env'})
+
 const app = express();
 const app2 = express();
 
+const TestModel = require('./models/TestModel')
 // mongoose
 
 mongoose.connect(process.env.MDB_URL, {useNewUrlParser: true}, (err)=>{
@@ -40,7 +42,14 @@ app2.get('/', function(req,res){
   res.send("테스트");
 });
 
-
+app2.get('/test', function(req,res){  
+  res.header("Access-Control-Allow-Origin","http://localhost:3000");
+  const testModel = new TestModel();
+  testModel.name = "update"
+  // testModel.save()
+  console.log(testModel)
+  res.send(testModel);
+});
 
 // const httpServer = http.createServer(app);
 
