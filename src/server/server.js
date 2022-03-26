@@ -1,5 +1,8 @@
+const customModule = require('./module/index')
+
 const express = require('express');
 const mongoose = require('mongoose')
+const cors = require('cors')
 const { MongoClient } = require('mongodb');
 require('dotenv').config({path:'variables.env'})
 
@@ -7,6 +10,7 @@ const app = express();
 const app2 = express();
 
 const TestModel = require('./models/TestModel')
+const DebatePost = require('./models/debatePost')
 // mongoose
 
 mongoose.connect(process.env.MDB_URL, {useNewUrlParser: true}, (err)=>{
@@ -34,6 +38,9 @@ const vhost = require("vhost");
 
 const httpDomain = "test17song.co.kr";
 
+app.use(cors())
+app.use(express.json());
+
 app2.get('/', function(req,res){
   // console.log("req.ip => " + req.ip);
   // console.log("req.hostname => " + req.hostname);
@@ -51,9 +58,30 @@ app2.get('/test', function(req,res){
   res.send(testModel);
 });
 
+
+app2.get('/debate-post', function(req,res){   
+  res.header("Access-Control-Allow-Origin","http://localhost:3000");
+  res.send(customModule.selectDebatePost())
+
+  // DebatePost.find().then(debatePost=>{
+  //   res.json(debatePost);
+  // }).catch(err=>{
+  //   console.log(err)    
+  // });  
+});
+
+app2.post('/debate-post', function(req,res){  
+  res.header("Access-Control-Allow-Origin","http://localhost:3000");
+
+  var test = new DebatePost(customModule.createDebatePost(req.body))
+  test.save(customModule.createDebatePost(req.body))
+  //res.send(customModule.createDebatePost(req.body))  
+});
+
 // const httpServer = http.createServer(app);
 
 app.use(vhost(httpDomain,app2))
+
 
 app.listen(80,function(){
   console.log('listen on 80')

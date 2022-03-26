@@ -2,16 +2,35 @@ const mongoose = require('mongoose')
 const {Schema} = mongoose
 
 const userSchema = new Schema(
-  {
+  {    
     email:{
       type:String,
       required:true,    
     },
-    name:String,
-    age:{
+    name:{
+      type:String,
+      required:true
+    },
+    id:{
+      type:String,
+      lowercase:true,
+      required:true
+    },
+    pw:{
+      type:String,
+      required:true
+    },
+    nickName:{
+      type:String,
+      required:true
+    },
+    level:{
       type:Number,
-      min:18,
-      max:50
+      default:0
+    },
+    point:{
+      type:Number,
+      default:0
     },
     enrolled:{
       type:Date,
@@ -24,4 +43,4 @@ const userSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model('USer',userSchema)
+module.exports = mongoose.model('User',userSchema)
