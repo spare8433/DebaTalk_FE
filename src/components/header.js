@@ -1,9 +1,9 @@
 import React from 'react'
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 
 const HeaderContainor = styled.div`
   width: 100%;
-  border-bottom: #2d3436 4px solid;
+  border-bottom: #b2bec3 2px solid;
 `
 
 const HeaderBox = styled.div`

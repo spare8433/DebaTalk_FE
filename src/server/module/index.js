@@ -6,6 +6,7 @@ const Reply = require('../models/reply');
 
 const selectDebatePost = () => {
   DebatePost.find().then(debatePost=>{
+    console.log('3')
     return debatePost
   }).catch(err => {return err})
 }

@@ -58,24 +58,49 @@ app2.get('/test', function(req,res){
   res.send(testModel);
 });
 
-
-app2.get('/debate-post', function(req,res){   
-  res.header("Access-Control-Allow-Origin","http://localhost:3000");
-  res.send(customModule.selectDebatePost())
-
-  // DebatePost.find().then(debatePost=>{
-  //   res.json(debatePost);
-  // }).catch(err=>{
-  //   console.log(err)    
-  // });  
-});
-
+//debate-post
 app2.post('/debate-post', function(req,res){  
   res.header("Access-Control-Allow-Origin","http://localhost:3000");
 
   var test = new DebatePost(customModule.createDebatePost(req.body))
   test.save(customModule.createDebatePost(req.body))
   //res.send(customModule.createDebatePost(req.body))  
+});
+
+
+app2.get('/debate-post', function(req,res){   
+  res.header("Access-Control-Allow-Origin","http://localhost:3000");
+
+  DebatePost.find().then(debatePost=>{
+    res.json(debatePost);
+  }).catch(err=>{
+    console.log(err)    
+  });
+
+});
+
+app2.patch('/debate-post/:id', function(req,res){  
+  res.header("Access-Control-Allow-Origin","http://localhost:3000");
+
+  DebatePost.updateOne({ id: req.params.id }, { content: req.body.content })
+  .then((result) => {
+    res.json(result);
+  })
+  .catch((err) => {
+    console.error(err);    
+  })
+});
+
+app2.delete('/debate-post/:id', function(req,res){  
+  res.header("Access-Control-Allow-Origin","http://localhost:3000");
+
+  DebatePost.deleteOne(req.params.id)
+  .then((result) => {
+    res.json(result);
+  })
+  .catch((err) => {
+    console.error(err);    
+  })
 });
 
 // const httpServer = http.createServer(app);

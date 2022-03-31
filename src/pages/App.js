@@ -1,4 +1,3 @@
-import './App.css';
 import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createGlobalStyle } from "styled-components";
@@ -7,7 +6,7 @@ import reset from "styled-reset";
 import { Header } from '../components/header';
 
 const Test = lazy(() => import('./test'));
-
+const MainHome = lazy(() => import('./mainHome'));
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -17,6 +16,7 @@ const GlobalStyles = createGlobalStyle`
       margin: 0;
       background-color: #F5F5F5;
       font-weight: 400;
+      box-sizing: border-box;
     }
 `;
 
@@ -28,7 +28,8 @@ function App() {
       <Router>
         <Suspense fallback={<div>loading...</div>}>
           <Routes>                 
-            <Route path="/" element={<Test />} />
+            <Route path="/" element={<MainHome />} />
+            <Route path="/test" element={<Test />} />
           </Routes>
         </Suspense>   
       </Router>   
