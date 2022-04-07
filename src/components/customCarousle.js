@@ -6,27 +6,28 @@ export const CustomCarousle = ((props) => {
   const [isAutoPlay,setIsAutoPlay] = useState(true)
   const [test02,setTest02] = useState('')
   
-
+  const left = useRef('')
   const timer = useRef(null)
   const track = useRef(null)
   const _currentSlide = useRef(1)
   const slideContent =useRef(null)
+
   
   const next = useCallback(() => {      
-    if(currentSlide >= props.option.slideNum || currentSlide === 0){
+    if(currentSlide >= props.children.length - (props.option.devidedScreen - 1) || currentSlide === 0){
       _currentSlide.current = 1;      
     }else{
       _currentSlide.current++;
     }
     //console.log('next')
     slide(_currentSlide.current);   
-  },[currentSlide,props.option.slideNum])
+  },[currentSlide,props.children.length])
 
   useEffect(()=>{
     const test = () =>{
-       if(props.content.length > 0){
-        setTest02( slideContent.current = props.content.map(res => {
-          return <ContentSlide key={res.key} width={props.option.width}>{res}</ContentSlide>
+       if(props.children.length > 0){
+        setTest02( slideContent.current = props.children.map(res => {
+          return <ContentSlide key={res.key} width={props.option.contentWidth}>{res}</ContentSlide>
         }) )      
       }
     }
@@ -45,16 +46,21 @@ export const CustomCarousle = ((props) => {
  
 
   const slide = (_currentSlide) => {
-   let left = (_currentSlide-1) * (-100)
+    if(props.option.contentWidth){
+      left.current = (_currentSlide-1) * (-1 * props.option.contentWidth) + 'px'
+    }else{
+      left.current = '100%'
+    }
+
     //console.log(left)
-    if(track){track.current.style.left = left+'%';}    
+    if(track){track.current.style.left = left.current}    
     //console.log('slide')
     setCurrentSlide(_currentSlide);
   }
 
   const prev = () => {
     if(currentSlide === 1){
-      _currentSlide.current = props.option.slideNum;
+      _currentSlide.current = props.children.length;
     }else{
       _currentSlide.current--;
     }
@@ -76,11 +82,11 @@ export const CustomCarousle = ((props) => {
     <CarouselBox height={props.option.height}>
       <CarouselButton key='prev' className='prev' onClick={()=>{pause();prev();start();}}><img alt='prev' src='./img/leftArrow.png'></img></CarouselButton>
       <CarouselButton key='next' className='next' onClick={()=>{pause();next();start();}}><img alt='next' src='./img/rightArrow.png'></img></CarouselButton>
-      <BannerImg><img alt='debatePeople' src='./img/mainBannerImg.png'></img></BannerImg>
+      {
+        props.banner ? props.banner : ''
+      }
       <CarouselTrack slideCount={props.option.slideCount} ref={track}>
-        {/* {props.content.map(res => {
-        return <ContentSlide key={res.key} width={props.option.width}>{res}</ContentSlide>
-      })} */}
+        
       {!!test02.length && test02}
       </CarouselTrack>
          
@@ -109,16 +115,8 @@ const CarouselTrack = styled.div`
 const ContentSlide = styled.div`
   width: ${(props) => props.width + 'px'};
   position: relative;
-  flex: 0 0 100%;
+  z-index: 3;
 `
-
-const BannerImg = styled.div`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: auto;
-`
-
 
 const CarouselButton = styled.div`
   position: absolute;

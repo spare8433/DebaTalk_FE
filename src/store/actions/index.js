@@ -13,3 +13,10 @@ export const delTest = (items) => {
     payload: items
   }      
 }
+
+export const setUser = (items) => {
+  return {
+    type: "SET_CURRENT_USER",
+    payload: items
+  }
+}

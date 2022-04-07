@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CustomCarousle } from '../components/customCarousle'
+
+import { Header } from '../components/header';
 
 import { MainCarousel } from '../components/mainCarousel'
 import { MainDebateContent } from '../components/mainDebateContent'
 import { MainSearch } from '../components/mainSearch'
+import { RecentReaction } from '../components/recentReaction'
 
 const IndexContainor = styled.div`
   width: 100%;  
@@ -12,12 +14,16 @@ const IndexContainor = styled.div`
 const ContentContainor = styled.div`
   width: 100%;
   margin: 20px auto;
-  &.top{
+  background-color: #fff;
+  &.topBanner{
     background-color: #fff;
   }
-  &.middle{
+  &.majorContent{
     background-color: ${({theme})=> theme.colors.background};
-  } 
+  }
+  &.recentReaction{
+    background-color: ${({theme})=> theme.colors.main};
+  }  
 `
 
 const ContentBox = styled.div`
@@ -34,8 +40,8 @@ const MainTitle = styled.h1`
 const MainHome = (props) => {
   return (
     <IndexContainor>
-
-      <ContentContainor className='top'>
+      <Header></Header>
+      <ContentContainor className='topBanner'>
         <ContentBox>
           <MainTitle>자칭 전문가들의 거대한 토론장에 오신걸 환영합니다.</MainTitle>
           <MainSearch />
@@ -43,11 +49,18 @@ const MainHome = (props) => {
         </ContentBox>
       </ContentContainor>
 
-      <ContentContainor className='middle'>
+      <ContentContainor className='majorContent'>
         <ContentBox>
           <MainDebateContent></MainDebateContent>
         </ContentBox>
       </ContentContainor>
+
+      <ContentContainor className='recentReaction'>
+        <ContentBox>
+          <RecentReaction></RecentReaction>
+        </ContentBox>
+      </ContentContainor>
+
 
     </IndexContainor>
   )

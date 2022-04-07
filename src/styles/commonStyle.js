@@ -8,3 +8,26 @@ export const Title = styled.div`
     font-size: 18px;
     margin-bottom: 10px;
 `
+
+export const ImgBox = styled.div`
+    width: auto;
+    height: auto;
+    img{
+        width: ${({width})=> width === '100%' ? '100%' : width +'px'};
+    }
+`
+
+export const CarouselButton = styled.div`
+  position: absolute;
+  top:50%;
+  transform: translate(0, -50%);
+  z-index: 2;
+  width: auto;
+  height: auto;
+  &.prev{
+    left: 0;
+  }
+  &.next{
+    right: 0;
+  }
+`
