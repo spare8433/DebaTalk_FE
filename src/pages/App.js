@@ -8,7 +8,7 @@ import theme from '../styles/theme'
 
 const Test = lazy(() => import('./test'));
 const MainHome = lazy(() => import('./MainHome'));
-const LoginPage = lazy(() => import('./LoginPage/LoginPage'));
+const LoginPage = lazy(() => import('./LoginPage'));
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
