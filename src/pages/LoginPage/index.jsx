@@ -1,7 +1,10 @@
 import {React, useState} from 'react'
 import { loginAPI } from '../../api/user';
+import { getCookie, setCookie } from '../../cookie';
 import useInput from '../../hooks/useInput';
-import {ImgBox} from '../../styles/commonStyle'
+import {ImgBox} from '../../styles/commonStyle';
+
+
 import { Containor, InputBox, Line, LoginBox, LoginContainor, LogoBox, MainButton, SubBox, SubButton } from './styles';
 
 
@@ -11,13 +14,15 @@ const LoginPage = () => {
   const [userId, onChangeUserId] = useInput('')
   const [password, onChangePassword] = useInput('')
 
+
   const onSubmitForm = async (e) => {
     e.preventDefault()
     const {data} = await loginAPI({
       userId,
       password
     })
-    console.log(data);
+    setCookie('token',data.token)
+    console.log(data.token);    
   }
   
   return (
@@ -39,7 +44,7 @@ const LoginPage = () => {
               <ImgBox width='40' shadow='true'><img alt='google' src='./img/google-plus.png'></img></ImgBox>
               <ImgBox width='40' shadow='true'><img alt='kakao-talk' src='./img/kakao-talk.png'></img></ImgBox>
             </>
-            <SubButton width='160' height='40' fontSize='16'>회원가입</SubButton>
+            <SubButton width='160' height='40' fontSize='16' onClick={()=>console.log(getCookie('user'))}>회원가입</SubButton>
           </SubBox>                    
         </LoginBox>
       </LoginContainor>
