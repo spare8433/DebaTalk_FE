@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const HeaderContainor = styled.div`
@@ -23,7 +24,7 @@ const HeaderBox = styled.div`
       font-size: 22px;
     }
   }
-  p{
+  a{
     align-items: flex-end;
     display: flex;
     font-size: 18px;
@@ -43,7 +44,9 @@ export const Header = () => {
           <li>커뮤니티</li>
           <li>랭킹</li>
         </ul>
-        <p>로그인 | 회원가입</p>
+        <Link to="/login">로그인</Link>
+        
+        
       </HeaderBox>
     </HeaderContainor>
   )

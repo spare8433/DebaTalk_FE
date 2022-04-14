@@ -5,10 +5,10 @@ import reset from "styled-reset";
 import theme from '../styles/theme'
 
 
-
 const Test = lazy(() => import('./test'));
 const MainHome = lazy(() => import('./MainHome'));
 const LoginPage = lazy(() => import('./LoginPage'));
+const SginUpPage = lazy(() => import('./SignUpPage'));
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -34,6 +34,16 @@ const GlobalStyles = createGlobalStyle`
       font-weight: 400;
       box-sizing: border-box;
     }
+    a {
+      color:black;
+      text-decoration: none;
+      outline: none}
+    a:hover, a:active {
+      color:black;
+      text-decoration: none;
+
+    }
+
     div{
       box-sizing: border-box;
     }
@@ -49,6 +59,7 @@ function App() {
             <Routes>                 
               <Route path="/" element={<MainHome />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/sign-up" element={<SginUpPage />} />
               <Route path="/test" element={<Test />} />
               
             </Routes>

@@ -122,7 +122,7 @@ const CarouselButton = styled.div`
   position: absolute;
   top:50%;
   transform: translate(0, -50%);
-  z-index: 2;
+  z-index: 10;
   width: auto;
   height: auto;
   img{

@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const addTest = (items) => {
   return {
     type: "ADD_TEST",

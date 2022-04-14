@@ -13,7 +13,8 @@ const IndexContainor = styled.div`
 `
 const ContentContainor = styled.div`
   width: 100%;
-  margin: 20px auto;
+  margin: 0 auto;
+  padding: 20px 0;
   background-color: #fff;
   &.topBanner{
     background-color: #fff;
