@@ -35,6 +35,7 @@
       "react-app/jest"
     ],
     "rules": {
+      "no-useless-escape": 0,
       "import/no-unresolved": 0,
       "no-use-before-define": 0,
       "import/no-anonymous-default-export": 0

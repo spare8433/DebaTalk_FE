@@ -72,6 +72,7 @@ background-color: ${({theme})=>theme.colors.gray_3};
 `
 
 export const InputBox = styled.div`
+  margin: 0 auto 20px;
   width: ${({width})=> width + 'px'};
   input{
     width: 100%;
@@ -82,9 +83,15 @@ export const InputBox = styled.div`
     border-radius:5px;
     padding: 0;
     padding-left: 16px;
-    margin-bottom: 20px;
+    margin: 0 0 5px;
     box-sizing: border-box;
     border: 1px solid ${({theme})=>theme.colors.gray_3};
     box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+  }
+  span{
+    color: ${({theme})=>theme.colors.gray_3};
+    margin-left :10px;
+    font-size: 13px;
+    font-weight:300;
   }
 `
