@@ -1,8 +1,11 @@
-import {users} from './index'
+import {instance,instanceWithAuth} from './index'
 
 // 로그인 api
-export const loginAPI = data => users.post('login', data)
+export const loginAPI = data => instance('users').post('login', data)
 
 
 //회원가입 api
-export const sginUpAPI = data => users.post('signup', data)
+export const sginUpAPI = data => instance('users').post('signup', data)
+
+// 유저 정보 가져오기
+export const getUser = data => instanceWithAuth('users').get('')

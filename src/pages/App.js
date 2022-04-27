@@ -4,11 +4,11 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import reset from "styled-reset";
 import theme from '../styles/theme'
 
-
 const Test = lazy(() => import('./test'));
 const MainHome = lazy(() => import('./MainHome'));
 const LoginPage = lazy(() => import('./LoginPage'));
 const SginUpPage = lazy(() => import('./SignUpPage'));
+const AdminPage = lazy(() => import('./AdminPage'));
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -61,7 +61,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/sign-up" element={<SginUpPage />} />
               <Route path="/test" element={<Test />} />
-              
+              <Route path="/admin/*" element={<AdminPage />} />
             </Routes>
           </Suspense>
 

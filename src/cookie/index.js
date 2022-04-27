@@ -19,3 +19,9 @@ export const getCookie = (name)  => {
 export const removeCookie = (name)  => {
   cookies.remove(name)
 }
+
+export const checkCookie = (name) => {
+  if(cookies.get(name))
+    return true
+  return false
+}

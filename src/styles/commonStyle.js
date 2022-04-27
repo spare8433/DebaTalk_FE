@@ -20,8 +20,8 @@ export const ImgBox = styled.div`
     width: auto;
     height: auto;    
     img{
-        width: ${({width})=> width === '100%' ? '100%' : width +'px'};
-        ${({shadow})=> shadow ? `filter: drop-shadow(0px 2px 8px rgb(99 99 99 / 30%))` : 'none'}
+        width: ${({width})=> width === '' ? 'inherit' : width +'px'};
+        ${({shadow})=> shadow ? `filter: drop-shadow(0px 2px 8px rgb(99 99 99 / 30%))` : ''}
     }
 `
 

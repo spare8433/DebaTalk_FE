@@ -20,12 +20,18 @@ const LoginPage = () => {
   const onSubmitForm = async (e) => {
   
     e.preventDefault()
-    const {data} = await loginAPI({
-      userId,
-      password
-    })
-    setCookie('token',data.token)
-    console.log(data.token);    
+    try {
+      const {data} = await loginAPI({
+        userId,
+        password
+      })
+      setCookie('token',data.token)
+      console.log(data.token);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
   
   return (

@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { getUser } from '../api/user'
+import { getCookie } from '../cookie'
+import { ImgBox } from '../styles/commonStyle'
+import { Profile } from './profile'
 
 const HeaderContainor = styled.div`
   width: 100%;
@@ -12,40 +16,64 @@ const HeaderBox = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   ul{
-    align-items: flex-end;
-    display: flex;  
+    display: flex;
+    align-items : center;
     justify-content: space-between;
     font-weight: 500;
-    padding-bottom: 20px;
+    height: min-content;
     li{
       margin: 0 25px; 
       font-size: 22px;
     }
   }
-  a{
-    align-items: flex-end;
-    display: flex;
-    font-size: 18px;
-    color: #505050;
-    padding-bottom: 20px;
-  }
 `
 
+// const ProfileBox = styled.div`
+//   display: flex;
+//   align-items: center;
+//   padding-bottom: 10px;
+//   h2{
+//     color: ${({theme})=> theme.colors.gray_1};
+//     margin-left: 10px;
+
+//   }
+// `
+
 export const Header = () => {
+
+  // const [userData,setUserData]= useState(null)
+
+  // useEffect(()=>{
+  //   const test = async () => {
+  //     if(getCookie('token')){
+  //       const {data} = await getUser(getCookie('token'))
+
+  //       setUserData(<ProfileBox>
+  //         <ImgBox width='32'><img alt='userImg' src={data.imgUrl === 'default' ? './img/default_user.png' : data.imgUrl }></img></ImgBox>
+  //         <h2>{data.nickname}</h2>
+  //       </ProfileBox>)
+  //     }
+  //   }
+  //   test()
+  // },[])
+
   return (
     <HeaderContainor>
       <HeaderBox>
-        <div><img alt='자전거로고' src='./img/temp_logo.png'></img></div>
+        <div><img alt='logo' src='./img/temp_logo.png'></img></div>
         <ul>
           <li>홈</li>
           <li>토론장</li>
           <li>커뮤니티</li>
           <li>랭킹</li>
         </ul>
-        <Link to="/login">로그인</Link>
-        
+
+        <Profile />
+        {/* { userData !== null ? userData
+        : <Link to="/login">로그인</Link>} */}
         
       </HeaderBox>
     </HeaderContainor>
