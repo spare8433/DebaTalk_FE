@@ -1,5 +1,7 @@
 import {React} from 'react'
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { css } from 'styled-components';
 import { loginAPI } from '../../api/user';
 import { BasicInput } from '../../components/basicInput';
 import { setCookie } from '../../cookie';
@@ -7,8 +9,35 @@ import useInput from '../../hooks/useInput';
 import { Containor, ImgBox, Line, MainButton, SubButton} from '../../styles/commonStyle';
 
 
-import { LoginBox, LoginContainor, LogoBox, SubBox } from './styles';
+import { LoginContainor, LogoBox, SubBox } from './styles';
 
+
+const LoginBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 40px 20px;
+  border: 1px solid ${({theme})=> theme.colors.gray_3};
+  border-radius: 5px;
+  background-color: ${({theme})=> theme.colors.background};
+  h2{
+    width: 350px;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  p{
+    color: ${({theme})=> theme.colors.gray_3};
+    font-size: 14px;
+    font-weight: 400;
+    margin:16px 0;
+  }
+  ${BasicInput}{
+    margin: 0 auto 20px;
+  }
+`
 
 const LoginPage = () => {
   const navigate = useNavigate()
@@ -34,6 +63,14 @@ const LoginPage = () => {
     
   }
   
+  const cssStyle = css`
+     margin: 0 auto 20px;
+  `
+  const styles = {
+    width:'350',
+    height:'40',
+    cssStyle
+  }
   return (
     <Containor minWidth='800'>
       <LoginContainor>
@@ -41,8 +78,8 @@ const LoginPage = () => {
         <LoginBox>
           <h2>로그인</h2>
           <form onSubmit={onSubmitForm}>
-          <BasicInput styles={{width:'350',placeholder:'아이디'}} value={userId} onChange={onChangeUserId}></BasicInput>
-          <BasicInput styles={{width:'350',placeholder:'비밀번호'}} type='password' value={password} onChange={onChangePassword}></BasicInput>
+          <BasicInput styles={{...styles, placeholder:'아이디'}} value={userId} onChange={onChangeUserId}></BasicInput>
+          <BasicInput styles={{...styles, placeholder:'비밀번호'}} type='password' value={password} onChange={onChangePassword}></BasicInput>
           {/* <InputBox width='350'><input placeholder='ID' value={userId} onChange={onChangeUserId}/></InputBox> */}
           {/* <InputBox width='350'><input tpye='password' placeholder='PW' value={password} onChange={onChangePassword}/></InputBox> */}
           <MainButton width='350' height='40' type='submit' fontSize='18'>로그인</MainButton>

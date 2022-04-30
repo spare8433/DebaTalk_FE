@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Containor = styled.div`
   width: 100%;
   height: 100%;
-  min-width:${({minWidth})=> minWidth + 'px'};
+  min-width:${({width})=> width === '100%' ? '100%' : width + 'px'};
   position: relative;
 `
 
@@ -72,11 +72,14 @@ background-color: ${({theme})=>theme.colors.gray_3};
 `
 
 export const InputBox = styled.div`
-  margin: 0 auto 20px;
+  box-sizing: border-box;
   width: ${({width})=> width + 'px'};
-  input{
+  
+  ${({cssStyle})=> cssStyle}
+
+  input,select{
     width: 100%;
-    height: 40px;
+    height: ${({height})=> height === '' ? 'inherit' : height +'px'};
     font-size: 16px;
     font-weight: 500;
     outline: none;

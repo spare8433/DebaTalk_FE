@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { css } from 'styled-components'
 import { loginAPI, sginUpAPI } from '../../api/user'
 import { BasicInput } from '../../components/basicInput'
 import { setCookie } from '../../cookie'
@@ -97,6 +98,14 @@ const SginUpPage = () => {
     return ''
   }
   
+  const cssStyle = css`
+     margin: 0 auto 20px;
+  `
+  const inputStyles = {
+    width:'350',
+    height:'40',
+    cssStyle
+  }
 
   return (
     <Containor minWidth='800'>
@@ -104,23 +113,23 @@ const SginUpPage = () => {
         <SginUpBox>
           <h2>회원가입</h2>
           <form onSubmit={onSubmitForm}>
-            <BasicInput styles={{width:'350', placeholder:'아이디'}} value={userId} onChange={onChangeUserId} onBlur={()=>{setIdNotiMsg(checkObject(checkId(userId)));}}>
+            <BasicInput styles={{...inputStyles, placeholder:'아이디'}} value={userId} onChange={onChangeUserId} onBlur={()=>{setIdNotiMsg(checkObject(checkId(userId)));}}>
               <span>{idNotiMsg}</span>
             </BasicInput>
             
-            <BasicInput styles={{width:'350', placeholder:'이메일'}} value={email} onChange={onChangeUserEmail} onBlur={()=>{setEmailNotiMsg(checkObject(checkEmail(email)));}}>
+            <BasicInput styles={{...inputStyles, placeholder:'이메일'}} value={email} onChange={onChangeUserEmail} onBlur={()=>{setEmailNotiMsg(checkObject(checkEmail(email)));}}>
               <span>{emailNotiMsg}</span>
             </BasicInput>
             
-            <BasicInput styles={{width:'350', placeholder:'닉네임'}} value={nickname} onChange={onChangeUserNickName} onBlur={()=>{setNicknameNotiMsg(checkObject(checkNickname(nickname)));}}>
+            <BasicInput styles={{...inputStyles, placeholder:'닉네임'}} value={nickname} onChange={onChangeUserNickName} onBlur={()=>{setNicknameNotiMsg(checkObject(checkNickname(nickname)));}}>
               <span>{nicknameNotiMsg}</span>
             </BasicInput>
             
-            <BasicInput styles={{width:'350', placeholder:'비밀번호'}} type='password' value={password} onChange={onChangeUserPw} onBlur={()=>{setPasswordNotiMsg(checkObject(checkPassword(password)));}}>
+            <BasicInput styles={{...inputStyles, placeholder:'비밀번호'}} type='password' value={password} onChange={onChangeUserPw} onBlur={()=>{setPasswordNotiMsg(checkObject(checkPassword(password)));}}>
               <span>{passwordNotiMsg}</span>
             </BasicInput>
             
-            <BasicInput styles={{width:'350', placeholder:'비밀번호 확인'}} type='password' value={rePassword} onChange={onChangeUserRePw} onBlur={()=>{setRePasswordNotiMsg(checkObject(checkRePassword(password,rePassword)));}}>
+            <BasicInput styles={{...inputStyles, placeholder:'비밀번호 확인'}} type='password' value={rePassword} onChange={onChangeUserRePw} onBlur={()=>{setRePasswordNotiMsg(checkObject(checkRePassword(password,rePassword)));}}>
               <span>{rePasswordNotiMsg}</span>
             </BasicInput>
             
