@@ -1,9 +1,18 @@
 import styled from 'styled-components'
 
+const checkWidth = (width) => {
+  if(width === '' || width === undefined) 
+    return 'inherit';
+  if(String(width).indexOf('%') > 0)
+    return width;
+  else
+    return width + 'px';
+}
+
 export const Containor = styled.div`
   width: 100%;
   height: 100%;
-  min-width:${({width})=> width === '100%' ? '100%' : width + 'px'};
+  min-width:${({width})=>checkWidth(width)};
   position: relative;
 `
 
@@ -20,7 +29,7 @@ export const ImgBox = styled.div`
     width: auto;
     height: auto;    
     img{
-        width: ${({width})=> width === '' ? 'inherit' : width +'px'};
+        width: ${({width})=>checkWidth(width)};
         ${({shadow})=> shadow ? `filter: drop-shadow(0px 2px 8px rgb(99 99 99 / 30%))` : ''}
     }
 `
@@ -39,8 +48,10 @@ export const CarouselButton = styled.div`
     right: 0;
   }
 `
+
+
 export const MainButton = styled.button`
-  width: ${({width})=> width === '100%' ? '100%' : width + 'px'};
+  width: ${({width})=>checkWidth(width)};
   height: ${({height})=> height +'px'};
   background-color: ${({theme})=>theme.colors.main};
   color: white;
@@ -53,7 +64,7 @@ export const MainButton = styled.button`
 `
 
 export const SubButton = styled.button`
-  width: ${({width})=> width === '100%' ? '100%' : width + 'px'};
+  width: ${({width})=>checkWidth(width)};
   height: ${({height})=> height +'px'};
   background-color: white;
   color: ${({theme})=>theme.colors.main};
@@ -65,15 +76,25 @@ export const SubButton = styled.button`
   cursor: pointer;
 `
 
+export const BasicButtonBox = styled.div`
+  width: ${({width})=>checkWidth(width)};
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  ${MainButton},${SubButton}{
+    margin-left: 10px;
+  }
+`
+
 export const Line = styled.div`
 background-color: ${({theme})=>theme.colors.gray_3};
   height: ${({height})=> height +'px'};
-  width: ${({width})=> width === '100%' ? '100%' : width + 'px'};
+  width: ${({width})=>checkWidth(width)};
 `
 
 export const InputBox = styled.div`
   box-sizing: border-box;
-  width: ${({width})=> width + 'px'};
+  width: ${({width})=>checkWidth(width)};
   
   ${({cssStyle})=> cssStyle}
 

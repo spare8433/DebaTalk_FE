@@ -5,6 +5,7 @@ import reset from "styled-reset";
 import theme from '../styles/theme'
 
 const Test = lazy(() => import('./test'));
+const Test2 = lazy(() => import('./test2'));
 const MainHome = lazy(() => import('./MainHome'));
 const LoginPage = lazy(() => import('./LoginPage'));
 const SginUpPage = lazy(() => import('./SignUpPage'));
@@ -61,6 +62,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/sign-up" element={<SginUpPage />} />
               <Route path="/test" element={<Test />} />
+              <Route path="/test2" element={<Test2 />} />
               <Route path="/admin/*" element={<AdminPage />} />
             </Routes>
           </Suspense>

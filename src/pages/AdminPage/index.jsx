@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Containor, ImgBox } from '../../styles/commonStyle'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate,useLocation } from 'react-router-dom';
 import { Profile } from '../../components/profile';
 import { SlideMenu } from '../../components/slideMenu';
 import { WritePost } from './managePost/writePost';
@@ -13,11 +13,12 @@ const AdminContainor = styled.div`
 
 // 왼쪽메뉴
 const Nav = styled.div`
-  min-width: 320px;
+  min-width: 280px;
   padding:30px 0;
   /* box-sizing: border-box; */
   background-color: #353535;
   height: 100%;
+  float:left;
 `
 
 const MenuBox = styled.div`
@@ -63,17 +64,21 @@ const ProfileBox = styled.div`
 // 메뉴부분을 제외한 콘테츠를 감싸는 부분
 const MainBox = styled.div`
   width: 100%;
- 
+  
 `
 
 // MainBox 에 헤더부분
 const Header = styled.div`
+  display: flex;
+  //justify-content: space-around;
+  align-items: center;
   height: 60px;
   background-color:white;
 `
 
 // MainBox 에 가변되는 내용을 감싸는 박스
 const ContentBox = styled.div`
+  max-width: 1120px;
   padding: 10px;
   box-sizing: border-box;
   background-color:white;
@@ -81,11 +86,23 @@ const ContentBox = styled.div`
 `
 
 const AdminPage = () => {
+  const location = useLocation()
   const navigation = useNavigate()
+
+  const [breadcrumb,setBreadcrumb] = useState('')
 
   const handleListClick = (address)=>{
     navigation('./'+ address,)
   }
+
+  
+  useEffect(()=>{
+    var result = '';
+    location.pathname.slice(1).split('/').map( res => {
+      result += res + ' > ';
+    })
+    setBreadcrumb(result)
+  },[location])
 
   return (
     <Containor minWidth='1440'>
@@ -158,7 +175,7 @@ const AdminPage = () => {
 
         <MainBox>
           <Header>
-            HEADER
+            {!!breadcrumb && breadcrumb}
           </Header>
           <ContentBox>
             

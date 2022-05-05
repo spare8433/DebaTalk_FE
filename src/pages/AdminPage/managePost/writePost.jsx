@@ -1,9 +1,15 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { useState } from 'react'
+
 import styled from 'styled-components'
-import { BasicInput } from '../../../components/basicInput'
+import { BasicInput } from '@components/basicInput'
 import useInput from '../../../hooks/useInput'
-import { Containor, InputBox, MainButton } from '../../../styles/commonStyle'
+import { BasicButtonBox, Containor, InputBox, MainButton } from '@styles/commonStyle'
+import Editor from '@components/Editor'
+import { createPostAPI } from '@api/post'
+
+const TopInputBox = styled.div`
+  display: flex;
+`
 
 const SelectBox = styled(InputBox)`
 margin-left:10px; 
@@ -13,25 +19,41 @@ margin-left:10px;
     padding-left: 8px;
   }
 `
-const TopInputBox = styled.div`
-  display: flex;
+
+const EditBox = styled.div`
+  margin: 10px 0 30px;
+  .ql-editor strong{
+     font-weight:bold;
+ }
 `
  
 export const WritePost = () => {
-  const location = useLocation()
-  console.log(location);
-  alert(location.pathname)
-  const defaultText = '타이틀 ㅇㅇㅇ /n dad'
-  const [postTitle,onChangePostTitle] = useInput('')
+  const [title,onChangeTitle] = useInput('')
+  const [content, setContent] = useState('');
+  const [category, onChangeCategory] = useInput('주제토론');
+
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+    console.log([category,title,content]);
+
+    const response = await createPostAPI({
+      category,
+      title,
+      content
+    })
+    console.log(response);
+  }
+
   return (
       
-    <Containor width='100%'>
-      <form>
+    <Containor width='100%'>      
+      <form onSubmit={onSubmitForm}>
         <TopInputBox>
-          <BasicInput styles={{width:400,height:30,placeholder:'제목을 입력해주세요'}} value={postTitle} onChange={onChangePostTitle} type='search' ></BasicInput>
+        
+          <BasicInput styles={{width:400,height:30,placeholder:'제목을 입력해주세요'}} value={title} onChange={onChangeTitle} type='search' ></BasicInput>
           
           <SelectBox height='30'>
-            <select>
+            <select value={category} onChange={onChangeCategory}>
               <option>주제토론</option>
               <option>찬반토론</option>
               <option>끝장토론</option>
@@ -39,10 +61,15 @@ export const WritePost = () => {
           </SelectBox>
         </TopInputBox>
 
-        <MainButton type='submit' width='180' height='40' fontSize='18'>등록</MainButton>
-        {/* <input type="submit"></input> */}
-        {/* <textarea placeholder={defaultText}></textarea> */}
+        <EditBox>
+          <Editor value={content} setValue={setContent}></Editor>
+        </EditBox>
+
+        <BasicButtonBox width={'100%'}>
+          <MainButton type='submit' width='180' height='40' fontSize='18'>등록</MainButton>
+        </BasicButtonBox>
       </form>
+      
     </Containor>
   )
 }
