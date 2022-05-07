@@ -6,7 +6,7 @@ import theme from '../styles/theme'
 
 const Test = lazy(() => import('./test'));
 const Test2 = lazy(() => import('./test2'));
-const MainHome = lazy(() => import('./MainHome'));
+const MainHome = lazy(() => import('./MainHomePage'));
 const LoginPage = lazy(() => import('./LoginPage'));
 const SginUpPage = lazy(() => import('./SignUpPage'));
 const AdminPage = lazy(() => import('./AdminPage'));
