@@ -10,6 +10,7 @@ const MainHome = lazy(() => import('./MainHomePage'));
 const LoginPage = lazy(() => import('./LoginPage'));
 const SginUpPage = lazy(() => import('./SignUpPage'));
 const AdminPage = lazy(() => import('./AdminPage'));
+const ProfilePage = lazy(() => import('./ProfilePage'));
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -64,6 +65,8 @@ function App() {
               <Route path="/test" element={<Test />} />
               <Route path="/test2" element={<Test2 />} />
               <Route path="/admin/*" element={<AdminPage />} />
+              <Route path="/profile/*" element={<ProfilePage />} />
+              
             </Routes>
           </Suspense>
 

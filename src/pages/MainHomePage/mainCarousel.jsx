@@ -2,12 +2,22 @@ import {React, useState, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import { CustomCarousle } from '@components/customCarousle'
 import { getPostAPI } from 'api/post'
+import theme from '@styles/theme'
 
 const Content = styled.div`
   width: ${({width}) => width + 'px'};  
 `
 
 const Keyword = styled.h2`
+  &:hover{
+    font-weight: 600;
+    color: #000;
+  }
+  width: 70%;
+  color: ${({theme})=> theme.colors.gray_1};
+  margin: 20px 0;
+  font-size: 36px;
+ 
 `
 
 const BannerImg = styled.div`
@@ -27,12 +37,6 @@ export const MainCarousel = () => {
     contentWidth:1160
   }  
 
-  var test = { // 가상 게시물 
-    content:[
-      {name:0},{name:1},{name:12}
-    ]
-  }
-  
   // [
   //   {
   //     "category": "자유",
@@ -60,34 +64,40 @@ export const MainCarousel = () => {
       skip:12
     }
 
-
-    // 12     3
-    // 13     3.1
-    const kewordCount = 4;
-    
+    const exposedKewordCount = 4;
     
     
     const setCarousle = async () => {
-      const posts = await getPostAPI(querry);
-      setContents('')
-      titles.current = posts.content.map((res)=> {
-        return <Keyword key={res.id}>{res.title}</Keyword> 
+      const {data} = await getPostAPI(querry);
+      console.log(data);
+
+      data.map((res)=>{
+        return { id:res.id, title:res.title, category:res.title}
       })
-      // return <Content key={res.id} width={option.contentWidth}>
-        // </Content>
-      for (let index = 0; index < querry.limit ; index++) {
-        page.current[Math.floor(index / kewordCount)] += titles.current[index]
+
+      titles.current = data.map((res,index)=> {
+        return <Keyword key={res.id + index}>{res.title}</Keyword> 
+      })
+
+      for (let pageNum = 0; pageNum < data.length / exposedKewordCount ; pageNum++) {
+        var result = [];
+        for (let titleNum = pageNum * 4; titleNum < (pageNum + 1) * 4 && titleNum < data.length; titleNum++) {
+          result.push(data[titleNum])
+        }
+        page.current[pageNum] = result;
       }
 
-      page.current.map(res => {
-        return <Content width={option.contentWidth}>{res}</Content>
-      })
-    
-    } 
-    
-    setCarousle()
+      setContents(page.current.map(res=>{
+        return <Content>{res.map((res,index) => {
+          return <Keyword key={res.id + index}>{res.title}</Keyword> 
+        })}</Content> 
+      }))
 
+      console.log(page.current);
+    } 
+  
     setBanner(<BannerImg><img alt='debatePeople' src='./img/mainBannerImg.png'></img></BannerImg>)
+    setCarousle()
   },[])
   
 

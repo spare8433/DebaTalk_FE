@@ -72,7 +72,7 @@ const LoginPage = () => {
     cssStyle
   }
   return (
-    <Containor minWidth='800'>
+    <Containor width='800'>
       <LoginContainor>
         <LogoBox><img alt='logo' src='./img/temp_logo.png'></img></LogoBox>
         <LoginBox>

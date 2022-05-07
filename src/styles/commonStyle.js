@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const checkWidth = (width) => {
   if(width === '' || width === undefined) 
-    return 'inherit';
+    return 'auto';
   if(String(width).indexOf('%') > 0)
     return width;
   else
@@ -14,6 +14,7 @@ export const Containor = styled.div`
   height: 100%;
   min-width:${({width})=>checkWidth(width)};
   position: relative;
+  box-sizing: border-box;
 `
 
 export const Title = styled.div`
@@ -87,7 +88,7 @@ export const BasicButtonBox = styled.div`
 `
 
 export const Line = styled.div`
-background-color: ${({theme})=>theme.colors.gray_3};
+  background-color: ${({theme})=>theme.colors.gray_3};
   height: ${({height})=> height +'px'};
   width: ${({width})=>checkWidth(width)};
 `
