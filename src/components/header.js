@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, {  useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { logout } from '@services/logout'
 import styled from 'styled-components'
-import { getUser } from '../api/user'
-import { getCookie } from '../cookie'
 import { ImgBox } from '../styles/commonStyle'
 import { Profile } from './profile'
 
@@ -31,39 +30,61 @@ const HeaderBox = styled.div`
   }
 `
 
-// const ProfileBox = styled.div`
-//   display: flex;
-//   align-items: center;
-//   padding-bottom: 10px;
-//   h2{
-//     color: ${({theme})=> theme.colors.gray_1};
-//     margin-left: 10px;
+const ProfileBox = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  ${ImgBox}{ 
+    margin:0 10px 0 20px;
+  }
+`
 
-//   }
-// `
+const DropDown = styled.div`
+  position: absolute;
+  /* display: flex; */
+  right: 0px;
+  top:45px;
+  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+  ul {
+    top:10px;
+    background-color: white;
+    display: block;
+    
+    li {
+      &:hover{
+        /* background-color: ${({theme})=>theme.colors.gray_3}; */
+        background-color: #f1f2f6;
+      }
+      width: 160px;
+      padding: 12px 16px;
+      font-size: 12px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+  }
+  img{
+    position: absolute;
+    top:-12px;
+    right: 10px;
+    text-align: right;
+    margin: 0;
+    height: auto;
+  }
+`
 
 export const Header = () => {
+  const [isDropListToggleOn,setIsDropListToggleOn] = useState(false)
 
-  // const [userData,setUserData]= useState(null)
+  const navigate = useNavigate()
 
-  // useEffect(()=>{
-  //   const test = async () => {
-  //     if(getCookie('token')){
-  //       const {data} = await getUser(getCookie('token'))
-
-  //       setUserData(<ProfileBox>
-  //         <ImgBox width='32'><img alt='userImg' src={data.imgUrl === 'default' ? './img/default_user.png' : data.imgUrl }></img></ImgBox>
-  //         <h2>{data.nickname}</h2>
-  //       </ProfileBox>)
-  //     }
-  //   }
-  //   test()
-  // },[])
+  const handleDropListClick = () => {
+    setIsDropListToggleOn(!isDropListToggleOn);
+  }
 
   return (
     <HeaderContainor>
       <HeaderBox>
-        <div><img alt='logo' src='./img/temp_logo.png'></img></div>
+        <div onClick={()=>navigate('/')}><img alt='logo' src='./img/temp_logo.png'></img></div>
         <ul>
           <li>홈</li>
           <li>토론장</li>
@@ -71,10 +92,22 @@ export const Header = () => {
           <li>랭킹</li>
         </ul>
 
-        <Profile />
-        {/* { userData !== null ? userData
-        : <Link to="/login">로그인</Link>} */}
-        
+        <ProfileBox>
+          <Profile onClick={()=>navigate('profile')} />
+          <ImgBox width='18' onClick={()=>handleDropListClick()}>
+            <img src='/img/menu-dots_light-gray.png' alt='menu'></img>
+          </ImgBox>
+          
+            {!isDropListToggleOn ? '' : 
+            <DropDown><img src='/img/drop-tail.png' alt=''></img>
+              <ul>
+                <li onClick={()=>navigate('/profile')}>마이 페이지</li>
+                <li onClick={()=> logout()}>로그아웃</li>
+              </ul>
+            </DropDown>}
+          
+        </ProfileBox>
+
       </HeaderBox>
     </HeaderContainor>
   )

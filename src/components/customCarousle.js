@@ -21,7 +21,7 @@ export const CustomCarousle = ((props) => {
     }
     //console.log('next')
     slide(_currentSlide.current);   
-  },[currentSlide,props.children.length])
+  },[currentSlide,props])
 
   useEffect(()=>{
     const test = () =>{

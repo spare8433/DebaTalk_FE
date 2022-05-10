@@ -1,6 +1,6 @@
-import {React, useState, useEffect, useRef } from 'react'
+import { React, useState, useEffect } from 'react'
 import styled from 'styled-components'
-import {ImgBox, CarouselButton} from '../styles/commonStyle'
+import { CarouselButton} from '../styles/commonStyle'
 import { CustomCarousle } from './customCarousle'
 
 
@@ -63,7 +63,7 @@ export const RecentReaction = () => {
       </Content>
     }))
   },[])
-    
+
 
   return (
     <Cotainor>

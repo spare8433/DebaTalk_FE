@@ -32,11 +32,10 @@ const ContentBox = styled.div`
   margin: 0 auto; 
 `
 
-const MainTitle = styled.h1`
-  font-weight: 500;
-  font-size: 24px;
-  
-`
+// const MainTitle = styled.h1`
+//   font-weight: 500;
+//   font-size: 24px;
+// `
 
 const MainHome = (props) => {
   return (

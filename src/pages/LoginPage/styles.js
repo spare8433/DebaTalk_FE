@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { BasicInput } from '../../components/basicInput'
 
 export const LoginContainor = styled.div`
   width: 450px;

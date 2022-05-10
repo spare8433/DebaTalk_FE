@@ -50,31 +50,31 @@ export const CarouselButton = styled.div`
   }
 `
 
-
-export const MainButton = styled.button`
+export const BasicButton = styled.button`
   width: ${({width})=>checkWidth(width)};
   height: ${({height})=> height +'px'};
-  background-color: ${({theme})=>theme.colors.main};
-  color: white;
-  border: 0;
-  border-radius:5px;
-  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
   font-size: ${({fontSize})=> fontSize +'px'};
-  font-weight: 600;
+  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+  border-radius:5px;
   cursor: pointer;
 `
 
-export const SubButton = styled.button`
-  width: ${({width})=>checkWidth(width)};
-  height: ${({height})=> height +'px'};
+export const MainButton = styled(BasicButton)`
+  background-color: ${({theme})=>theme.colors.main};
+  color: white;
+  border: 0;
+  font-weight: 600;
+`
+
+export const SubButton = styled(BasicButton)`
   background-color: white;
   color: ${({theme})=>theme.colors.main};
   border: 1px solid ${({theme})=>theme.colors.gray_3};
-  border-radius:5px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  font-size: ${({fontSize})=> fontSize +'px'};
-  font-weight: 600;
-  cursor: pointer;
+`
+export const LightGrayButton = styled(BasicButton)`
+  background-color: white;
+  color: ${({theme})=> theme.colors.gray_1};
+  border: 1px solid ${({theme})=> theme.colors.gray_1};
 `
 
 export const BasicButtonBox = styled.div`

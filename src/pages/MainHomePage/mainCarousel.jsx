@@ -2,7 +2,6 @@ import {React, useState, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import { CustomCarousle } from '@components/customCarousle'
 import { getPostAPI } from 'api/post'
-import theme from '@styles/theme'
 
 const Content = styled.div`
   width: ${({width}) => width + 'px'};  

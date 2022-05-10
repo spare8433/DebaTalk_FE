@@ -1,7 +1,4 @@
-import axios from 'axios';
 import { getCookie } from '../../cookie';
-
-
 
 export default (instance) =>{
 

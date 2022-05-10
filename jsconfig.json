@@ -5,7 +5,9 @@
       "@components/*": ["./components/*"],
       "@styles/*": ["./styles/*"],
       "@api/*": ["./api/*"],
-      "@cookie/*": ["./cookie/*"]
+      "@cookie/*": ["./cookie/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@services/*": ["./services/*"]
     }
   }
 }

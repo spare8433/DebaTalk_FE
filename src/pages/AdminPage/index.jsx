@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Containor, ImgBox } from '../../styles/commonStyle'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Routes, Route, useNavigate,useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigate,useLocation } from 'react-router-dom';
 import { Profile } from '../../components/profile';
 import { SlideMenu } from '../../components/slideMenu';
 import { WritePost } from './managePost/writePost';
@@ -100,6 +100,7 @@ const AdminPage = () => {
     var result = '';
     location.pathname.slice(1).split('/').map( res => {
       result += res + ' > ';
+      return 0;
     })
     setBreadcrumb(result)
   },[location])

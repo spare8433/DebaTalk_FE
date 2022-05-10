@@ -18,3 +18,9 @@ export const setUser = (items) => {
     payload: items
   }
 }
+
+export const deleteUser = () => {
+  return {
+    type: "DELETE_CURRENT_USER"
+  }
+}

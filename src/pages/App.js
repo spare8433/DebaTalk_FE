@@ -1,3 +1,4 @@
+import { AuthRoute } from "@components/AuthRoute";
 import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createGlobalStyle, ThemeProvider } from "styled-components";
@@ -59,13 +60,14 @@ function App() {
         <Router>
           <Suspense fallback={<div>loading...</div>}>
             <Routes>                 
-              <Route path="/" element={<MainHome />} />
+              
+              <Route path="/" version={1} element={<AuthRoute><MainHome /></AuthRoute>} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/sign-up" element={<SginUpPage />} />
               <Route path="/test" element={<Test />} />
               <Route path="/test2" element={<Test2 />} />
               <Route path="/admin/*" element={<AdminPage />} />
-              <Route path="/profile/*" element={<ProfilePage />} />
+              <Route path="/profile" element={<ProfilePage />} />
               
             </Routes>
           </Suspense>

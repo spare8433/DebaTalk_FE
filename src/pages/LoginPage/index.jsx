@@ -2,14 +2,16 @@ import {React} from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import { loginAPI } from '../../api/user';
-import { BasicInput } from '../../components/basicInput';
-import { setCookie } from '../../cookie';
-import useInput from '../../hooks/useInput';
-import { Containor, ImgBox, Line, MainButton, SubButton} from '../../styles/commonStyle';
+import { loginAPI, getUser } from '@api/user';
+import { BasicInput } from '@components/basicInput';
+import { setCookie } from '@cookie';
+import useInput from '@hooks/useInput';
+import { Containor, ImgBox, Line, MainButton, SubButton} from '@styles/commonStyle';
 
 
 import { LoginContainor, LogoBox, SubBox } from './styles';
+import { setUser } from 'store/actions';
+import { useDispatch } from 'react-redux';
 
 
 const LoginBox = styled.div`
@@ -34,9 +36,6 @@ const LoginBox = styled.div`
     font-weight: 400;
     margin:16px 0;
   }
-  ${BasicInput}{
-    margin: 0 auto 20px;
-  }
 `
 
 const LoginPage = () => {
@@ -44,10 +43,11 @@ const LoginPage = () => {
 
   const [userId, onChangeUserId] = useInput('')
   const [password, onChangePassword] = useInput('')
-
+  
+  const dispatch = useDispatch()
   
   const onSubmitForm = async (e) => {
-  
+    
     e.preventDefault()
     try {
       const {data} = await loginAPI({
@@ -56,6 +56,10 @@ const LoginPage = () => {
       })
       setCookie('token',data.token)
       console.log(data.token);
+      
+      const user = await getUser(data.token);
+      dispatch(setUser(user));
+
       navigate('/');
     } catch (error) {
       console.log(error);
