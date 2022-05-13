@@ -27,12 +27,25 @@ export const Title = styled.div`
 `
 
 export const ImgBox = styled.div`
-    width: auto;
-    height: auto;    
-    img{
-        width: ${({width})=>checkWidth(width)};
-        ${({shadow})=> shadow ? `filter: drop-shadow(0px 2px 8px rgb(99 99 99 / 30%))` : ''}
-    }
+  width: ${({width})=>checkWidth(width)};
+  height: auto;    
+  img{
+    width: 100%;
+      ${({shadow})=> shadow ? `filter: drop-shadow(0px 2px 8px rgb(99 99 99 / 30%))` : ''}
+  }
+`
+
+export const CircleImgBox = styled(ImgBox)`
+  width:${({width})=>checkWidth(width)};
+  height:${({width})=>checkWidth(width)};
+  border-radius: 70%;
+  overflow:hidden;
+  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+  }
 `
 
 export const CarouselButton = styled.div`

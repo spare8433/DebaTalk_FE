@@ -58,7 +58,7 @@ const LogoBox = styled.div`
 `
 
 const ProfileBox = styled.div`
-  padding: 20px 0;
+  padding: 20px 30px;
   border-bottom: solid 2px ${({theme})=>theme.colors.gray_1};
 `
 // 메뉴부분을 제외한 콘테츠를 감싸는 부분

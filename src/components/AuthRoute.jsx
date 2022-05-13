@@ -10,14 +10,15 @@ import { setUser } from 'store/actions'
 export const AuthRoute = ({ version,children}) => {
   const dispatch = useDispatch();
 
-  useEffect(()=> {
-    const setUserData = async () => {
-      if(isLogin()){
-        dispatch(setUser(getUser(getCookie('token'))))
-      }
-    }
-    setUserData()
-  },[dispatch])
+  // useEffect(()=> {
+  //   const setUserData = async () => {
+  //     if(isLogin()){
+  //       const { data }= await getUser(getCookie('token'));
+  //       dispatch(setUser(data));
+  //     }
+  //   }
+  //   setUserData()
+  // },[dispatch])
   
   if(isLogin())
     return children;

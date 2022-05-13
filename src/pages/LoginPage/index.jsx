@@ -58,7 +58,7 @@ const LoginPage = () => {
       console.log(data.token);
       
       const user = await getUser(data.token);
-      dispatch(setUser(user));
+      dispatch(setUser(user.data));
 
       navigate('/');
     } catch (error) {

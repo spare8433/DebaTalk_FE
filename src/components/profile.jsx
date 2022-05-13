@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { getUser } from '@api/user'
-import { getCookie } from '@cookie'
-import { ImgBox } from '@styles/commonStyle'
+import { CircleImgBox } from '@styles/commonStyle'
 import styled from 'styled-components'
 import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { isLogin } from '@services/isLogin'
 
 const ProfileContainor = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	/* justify-content: center; */
 	font-size: 18px;
 	color : ${({mode,theme})=> mode === 'dark' ? 'white' : theme.colors.gray_1};
 `
@@ -35,14 +34,15 @@ export const Profile = ({mode,onClick}) => {
 
     useEffect(()=>{
     	const checkProfile = async () =>{
-			if(getCookie('token')){
-				const {data} = await getUser(getCookie('token'))
+			if(isLogin()){
 				console.log(user);	
 				setUserData(
 					<ProfileLine onClick={onClick}>
-						<ImgBox width='32'><img alt='userImg' src={data.imgUrl === 'default' ? './img/default_user.png' : data.imgUrl }></img></ImgBox>
-						<h2>{data.nickname}</h2>
+						<CircleImgBox width='32'><img alt='userImg' src={user.imgUrl === 'default' ? './img/default_user.png' : user.imgUrl }></img></CircleImgBox>
+						<h2>{user.nickname}</h2>
 					</ProfileLine>)
+			}else{
+				setUserData(null)
 			}
     }
     checkProfile()

@@ -1,9 +1,12 @@
 import React, {  useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { logout } from '@services/logout'
 import styled from 'styled-components'
 import { ImgBox } from '../styles/commonStyle'
 import { Profile } from './profile'
+import { isLogin } from '@services/isLogin'
+import { removeCookie } from '@cookie/'
+import { deleteUser } from 'store/actions'
+import { useDispatch } from 'react-redux'
 
 const HeaderContainor = styled.div`
   width: 100%;
@@ -74,11 +77,18 @@ const DropDown = styled.div`
 
 export const Header = () => {
   const [isDropListToggleOn,setIsDropListToggleOn] = useState(false)
-
   const navigate = useNavigate()
+  const dispatch = useDispatch();
 
   const handleDropListClick = () => {
     setIsDropListToggleOn(!isDropListToggleOn);
+  }
+
+  const logout = () => {
+    removeCookie('token');
+    dispatch(deleteUser());
+    setIsDropListToggleOn(!isDropListToggleOn);
+    navigate('/');
   }
 
   return (
@@ -93,18 +103,22 @@ export const Header = () => {
         </ul>
 
         <ProfileBox>
-          <Profile onClick={()=>navigate('profile')} />
-          <ImgBox width='18' onClick={()=>handleDropListClick()}>
-            <img src='/img/menu-dots_light-gray.png' alt='menu'></img>
-          </ImgBox>
-          
+          <Profile onClick={()=>navigate('/profile')} />
+
+            {!isLogin() ? '' :
+              <ImgBox width='18' onClick={()=>handleDropListClick()}>
+                <img src='/img/menu-dots_light-gray.png' alt='menu'></img>
+              </ImgBox>
+            } 
+         
             {!isDropListToggleOn ? '' : 
-            <DropDown><img src='/img/drop-tail.png' alt=''></img>
-              <ul>
-                <li onClick={()=>navigate('/profile')}>마이 페이지</li>
-                <li onClick={()=> logout()}>로그아웃</li>
-              </ul>
-            </DropDown>}
+              <DropDown><img src='/img/drop-tail.png' alt=''></img>
+                <ul>
+                  <li onClick={()=> navigate('/profile')}>마이 페이지</li>
+                  <li onClick={()=> logout()}>로그아웃</li>
+                </ul>
+              </DropDown>
+            }
           
         </ProfileBox>
 

@@ -61,13 +61,13 @@ function App() {
           <Suspense fallback={<div>loading...</div>}>
             <Routes>                 
               
-              <Route path="/" version={1} element={<AuthRoute><MainHome /></AuthRoute>} />
+              <Route path="/" version={1} element={<MainHome />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/sign-up" element={<SginUpPage />} />
               <Route path="/test" element={<Test />} />
               <Route path="/test2" element={<Test2 />} />
-              <Route path="/admin/*" element={<AdminPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/admin/*" element={<AuthRoute><AdminPage /></AuthRoute>} />
+              <Route path="/profile" element={<AuthRoute><ProfilePage /></AuthRoute>} />
               
             </Routes>
           </Suspense>
