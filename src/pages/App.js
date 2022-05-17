@@ -5,6 +5,7 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import reset from "styled-reset";
 import theme from '../styles/theme'
 
+
 const Test = lazy(() => import('./test'));
 const Test2 = lazy(() => import('./test2'));
 const MainHome = lazy(() => import('./MainHomePage'));
@@ -12,6 +13,7 @@ const LoginPage = lazy(() => import('./LoginPage'));
 const SginUpPage = lazy(() => import('./SignUpPage'));
 const AdminPage = lazy(() => import('./AdminPage'));
 const ProfilePage = lazy(() => import('./ProfilePage'));
+const DebateForumPage = lazy(() => import('./DebateForumPage'));
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -46,9 +48,11 @@ const GlobalStyles = createGlobalStyle`
       text-decoration: none;
 
     }
-
     div{
       box-sizing: border-box;
+    }
+    select,input,textarea{
+      font-family: 'Noto Sans KR', sans-serif;   
     }
 `;
 
@@ -68,6 +72,8 @@ function App() {
               <Route path="/test2" element={<Test2 />} />
               <Route path="/admin/*" element={<AuthRoute><AdminPage /></AuthRoute>} />
               <Route path="/profile" element={<AuthRoute><ProfilePage /></AuthRoute>} />
+              <Route path="/debate-forum" element={<DebateForumPage />} />
+
               
             </Routes>
           </Suspense>

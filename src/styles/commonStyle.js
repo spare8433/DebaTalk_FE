@@ -18,12 +18,12 @@ export const Containor = styled.div`
 `
 
 export const Title = styled.div`
-    color:${({theme}) => theme.colors.main};  
-    border-bottom:solid 3px ${({theme}) => theme.colors.main};
-    text-align : ${({align})=> align};
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 10px;
+  color:${({theme}) => theme.colors.main};  
+  border-bottom:solid 3px ${({theme}) => theme.colors.main};
+  text-align : ${({align})=> align};
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 10px;
 `
 
 export const ImgBox = styled.div`
@@ -31,22 +31,27 @@ export const ImgBox = styled.div`
   height: auto;    
   img{
     width: 100%;
-      ${({shadow})=> shadow ? `filter: drop-shadow(0px 2px 8px rgb(99 99 99 / 30%))` : ''}
+    ${({shadow})=> {return shadow ? 'filter: drop-shadow(0px 2px 8px rgb(99 99 99 / 30%))' : ''}}
   }
 `
 
-export const CircleImgBox = styled(ImgBox)`
-  width:${({width})=>checkWidth(width)};
-  height:${({width})=>checkWidth(width)};
-  border-radius: 70%;
+export const ThumbnailImgBox = styled(ImgBox)`
+  height:${({height})=>checkWidth(height)};
   overflow:hidden;
-  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
   img{
     width: 100%;
     height: 100%;
     object-fit:cover;
   }
 `
+
+export const CircleImgBox = styled(ThumbnailImgBox)`
+  height:${({width})=>checkWidth(width)};
+  border-radius: 70%;
+  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+`
+
+
 
 export const CarouselButton = styled.div`
   position: absolute;
