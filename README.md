@@ -1,19 +1,15 @@
-# temp_poject
+# Debatalk
+
 ## Description
-* **의의** : 처음으로 제대로 해보는 1인 프로젝트로 디자인,기획,프론트,백 기타 등등 경험하기 위한 프로젝트
-* **설명** : temp
+* **의의** : React 로 제대로 해보는 프로젝트로 디자인,기획,프론트,REST API, 기타 등등 직접해 보면서 경험하기 위한 프로젝트
+* **설명** : 디베이톡은 토론하다(Debate) + 대화하다(Talk) 의 합성어로 온라인상에서 건강한 토론과 대화를 즐길 수 있는 사이트로써 사회적 이슈, 전통적인 토론 주제 등등 한쪽으로 편향되지 않은 자유로운 대화의 장을 열고자 합니다. 
 
 ## Installation
 
 ## Built In
-개발 기간 : 
+개발 기간 : 2022-01-06 ~
 
 ### Front
-
-### React, Javascript, antd   
-
-### Back
-
-### Express.js, Node.js
++ React, JS
 
 ## Page
