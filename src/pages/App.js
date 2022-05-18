@@ -5,7 +5,6 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import reset from "styled-reset";
 import theme from '../styles/theme'
 
-
 const Test = lazy(() => import('./test'));
 const Test2 = lazy(() => import('./test2'));
 const MainHome = lazy(() => import('./MainHomePage'));
@@ -14,6 +13,7 @@ const SginUpPage = lazy(() => import('./SignUpPage'));
 const AdminPage = lazy(() => import('./AdminPage'));
 const ProfilePage = lazy(() => import('./ProfilePage'));
 const DebateForumPage = lazy(() => import('./DebateForumPage'));
+const DetailDebatePage = lazy(() => import('./DetailDebatePage'));
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -73,6 +73,7 @@ function App() {
               <Route path="/admin/*" element={<AuthRoute><AdminPage /></AuthRoute>} />
               <Route path="/profile" element={<AuthRoute><ProfilePage /></AuthRoute>} />
               <Route path="/debate-forum" element={<DebateForumPage />} />
+              <Route path="/detail-debatepost" element={<DetailDebatePage />} />
 
               
             </Routes>

@@ -3,6 +3,7 @@ import { ImgBox } from '@styles/commonStyle'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import dompurify from 'dompurify'
+import { useNavigate } from 'react-router-dom'
 
 const CotentBox = styled.div`
   border-radius: 10px;
@@ -52,7 +53,7 @@ const TextContentLine = styled.div`
 `
 
 const DebateCotentBox = () => {
-  
+  const navigate = useNavigate()
 
   const [postContent,setPostContent] = useState(null)
 
@@ -70,7 +71,7 @@ const DebateCotentBox = () => {
       const { data } = await getPostAPI(querry);
       console.log(data);
       setPostContent(data.map((res,index)=>{
-        return <PostBox key={'debatePostItmes'+index}>
+        return <PostBox key={'debatePostItmes'+index} onClick={()=>navigate('/detail-debatepost',{ state: { id:res.id}})}>
           <ImgBox shadow='true' width='200' height='180'><img src={res.imgUrl === 'default' ? '/img/default-thumbnail.png' : res.imgUrl} alt=''></img></ImgBox>
           <TextBox>
             <h3>{res.title}</h3>
@@ -84,7 +85,7 @@ const DebateCotentBox = () => {
 
     fetchContent();
 
-  },[])
+  },[navigate])
 
   
 
