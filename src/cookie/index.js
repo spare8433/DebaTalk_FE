@@ -21,7 +21,9 @@ export const removeCookie = (name)  => {
 }
 
 export const checkCookie = (name) => {
-  if(cookies.get(name))
+  if(getCookie(name) !== undefined){
     return true
+  }
+    
   return false
 }
