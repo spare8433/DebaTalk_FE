@@ -39,7 +39,7 @@ const TextContentLine = styled.div`
   margin: 10px 0;
   flex: 1;
   p{
-    height: 100px;
+    height: 70px;
     line-height: 1.6;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -71,8 +71,8 @@ const DebateCotentBox = () => {
       const { data } = await getPostAPI(querry);
       console.log(data);
       setPostContent(data.map((res,index)=>{
-        return <PostBox key={'debatePostItmes'+index} onClick={()=>navigate('/detail-debatepost',{ state: { id:res.id}})}>
-          <ImgBox shadow='true' width='200' height='180'><img src={res.imgUrl === 'default' ? '/img/default-thumbnail.png' : res.imgUrl} alt=''></img></ImgBox>
+        return <PostBox key={'debatePostItmes'+index} onClick={()=>navigate('./detail-debatepost',{ state: { id:res.id}})}>
+          <ImgBox shadow='true' width='160'><img src={res.imgUrl === 'default' ? '/img/default-thumbnail.png' : res.imgUrl} alt=''></img></ImgBox>
           <TextBox>
             <h3>{res.title}</h3>
             <TextContentLine dangerouslySetInnerHTML={ {__html: sanitizer(res.content)} }></TextContentLine>

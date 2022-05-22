@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Containor, ImgBox } from '@styles/commonStyle'
-import { ThemeContext } from 'styled-components'
 
 const IndexContainor = styled(Containor)`
   background-color: white;
@@ -22,6 +21,9 @@ const MoveButtonLine = styled.div`
   ${ImgBox}{
     margin-left: 10px;
   }
+`
+const StyledCategory = styled.div`
+  
 `
 
 const KeywordLine = styled.div`

@@ -13,7 +13,7 @@ const SginUpPage = lazy(() => import('./SignUpPage'));
 const AdminPage = lazy(() => import('./AdminPage'));
 const ProfilePage = lazy(() => import('./ProfilePage'));
 const DebateForumPage = lazy(() => import('./DebateForumPage'));
-const DetailDebatePage = lazy(() => import('./DetailDebatePage'));
+const DebateTopicBoardPage = lazy(() => import('./DebateForumPage/DebateTopicBoardPage'));
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -72,8 +72,9 @@ function App() {
               <Route path="/test2" element={<Test2 />} />
               <Route path="/admin/*" element={<AuthRoute><AdminPage /></AuthRoute>} />
               <Route path="/profile" element={<AuthRoute><ProfilePage /></AuthRoute>} />
-              <Route path="/debate-forum" element={<DebateForumPage />} />
-              <Route path="/detail-debatepost" element={<DetailDebatePage />} />
+              <Route path="/debate-forum/*" element={<DebateForumPage />} />
+              
+              <Route path="/debate-topic-board" element={<DebateTopicBoardPage />} />
 
               
             </Routes>
