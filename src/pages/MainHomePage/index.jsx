@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Header } from '@components/header';
+import { Header } from '@components/Header';
 
 import { MainCarousel } from './mainCarousel'
 import { MainDebateContent } from '@components/mainDebateContent'

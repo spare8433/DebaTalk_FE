@@ -1,5 +1,5 @@
 import { uploadUserImageAPI } from '@api/user';
-import { Header } from '@components/header';
+import { Header } from '@components/Header';
 import { BasicButtonBox, CircleImgBox, Containor, LightGrayButton, Line } from '@styles/commonStyle'
 import React, { useState, useEffect} from 'react'
 import styled from 'styled-components';

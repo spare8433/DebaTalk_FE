@@ -4,7 +4,6 @@ import { Containor, ImgBox } from '@styles/commonStyle'
 import styled from 'styled-components'
 import { useLocation } from 'react-router-dom'
 import { getOnePostAPI } from '@api/post'
-import { Header } from '@components/header'
 
 const IndexContainor = styled(Containor)`
   
@@ -96,7 +95,6 @@ const DetailDebatePage = () => {
 
   return (
     <IndexContainor>
-      <Header></Header>
       <DetailDevateContainor>
 
         {/* 타이틀 부분 박스 */}
