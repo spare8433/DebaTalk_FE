@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { CircleImgBox } from '@styles/commonStyle'
 import styled from 'styled-components'
 import {useNavigate} from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { isLogin } from '@services/isLogin'
+import { getUser } from '@api/user'
+import { getCookie } from '@cookie/'
+import { setUser } from '@store/actions'
 
 const ProfileContainor = styled.div`
 	display: flex;
@@ -26,31 +29,35 @@ const LoginLineStyle = styled.div`
 	cursor: pointer;
 `
 
-export const Profile = ({mode,onClick}) => {
+const Profile = ({mode,onClick}) => {
 	const navigation = useNavigate();
+	const dispatch = useDispatch();
 
-    const [userData,setUserData]= useState(null)
-		const user = useSelector(state=> state.user);
+	const [userData,setUserData]= useState(null)
+	const user = useSelector(state=> state.user);
 
-    useEffect(()=>{
-    	const checkProfile = async () =>{
-			if(isLogin()){
-				console.log(user);	
-				setUserData(
-					<ProfileLine onClick={onClick}>
-						<CircleImgBox width='32'><img alt='userImg' src={user.imgUrl === 'default' ? './img/default_user.png' : user.imgUrl }></img></CircleImgBox>
-						<h2>{user.nickname}</h2>
-					</ProfileLine>)
-			}else{
-				setUserData(null)
-			}
-    }
-    checkProfile()
-	},[onClick, user])
+	useEffect(()=>{
+		console.log('1');
+		const fetchProfile = async () =>{
+			console.log('2');
+			const user = await getUser(getCookie('token'));
+      dispatch(setUser(user.data));
+		}
+		fetchProfile()
+	},[])
 
   return (
     <ProfileContainor mode={mode}>
-	{userData !== null ? userData : <LoginLineStyle onClick={()=>{navigation('/login')}}>로그인</LoginLineStyle>}
-	</ProfileContainor>
+			{isLogin() ? 
+				<ProfileLine onClick={onClick}>
+					<CircleImgBox width='32'><img alt='userImg' src={user.imgUrl === 'default' ? './img/default_user.png' : user.imgUrl }></img></CircleImgBox>
+					<h2>{user.nickname}</h2>
+				</ProfileLine> 
+			: 
+				<LoginLineStyle onClick={()=>{navigation('/login')}}>로그인</LoginLineStyle>}
+
+		</ProfileContainor>
   )
 }
+
+export default memo(Profile)

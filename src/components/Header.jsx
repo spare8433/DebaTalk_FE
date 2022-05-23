@@ -2,7 +2,7 @@ import React, {  useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { ImgBox } from '../styles/commonStyle'
-import { Profile } from './profile'
+import  Profile  from '@components/profile'
 import { isLogin } from '@services/isLogin'
 import { removeCookie } from '@cookie/'
 import { deleteUser } from 'store/actions'
@@ -180,6 +180,9 @@ export const Header = () => {
     navigate('/');
   }
 
+  useEffect(()=>{
+    console.log('aa');
+  },[])
   useEffect(()=>{
     var result = '';
     if(location.pathname !== '/'){
