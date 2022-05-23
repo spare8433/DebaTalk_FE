@@ -26,6 +26,16 @@ export const Title = styled.div`
   margin-bottom: 10px;
 `
 
+export const TitleBox=styled.div`
+  color: black;
+  font-size:32px;
+  width: fit-content ;
+  padding: 0 50px 10px;
+  font-weight: 500;
+  margin: 20px auto ;
+  border-bottom: 4px solid ${({theme})=>theme.colors.main};
+`
+
 export const ImgBox = styled.div`
   width: ${({width})=>checkWidth(width)};
   height: auto;    
