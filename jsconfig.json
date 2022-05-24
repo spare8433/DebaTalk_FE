@@ -8,7 +8,8 @@
       "@cookie/*": ["./cookie/*"],
       "@hooks/*": ["./hooks/*"],
       "@services/*": ["./services/*"],
-      "@store/*": ["./store/*"]
+      "@store/*": ["./store/*"],
+      "@data/*": ["./lib/data/*"]
     }
   }
 }
