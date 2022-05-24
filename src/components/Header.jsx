@@ -181,9 +181,6 @@ export const Header = () => {
   }
 
   useEffect(()=>{
-    console.log('aa');
-  },[])
-  useEffect(()=>{
     var result = '';
     if(location.pathname !== '/'){
       location.pathname.slice(1).split('/').map( res => {
@@ -217,7 +214,7 @@ export const Header = () => {
                 </DebateForumDropDown>
               }
             </li>
-            <li>커뮤니티</li>
+            <li onClick={()=>navigate('/community')}>커뮤니티</li>
             <li>랭킹</li>
           </ul>
 
