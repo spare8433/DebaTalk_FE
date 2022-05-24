@@ -1,15 +1,15 @@
 import { getPostAPI } from '@api/post'
-import { ImgBox } from '@styles/commonStyle'
+import { FitImgBox } from '@styles/commonStyle'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import dompurify from 'dompurify'
 
 const InexContainor = styled.div`
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: white;
   border: ${({theme})=> theme.colors.gray_1};
-  padding:20px 30px;
-  border: ${({theme})=> theme.colors.gray_1} 1px solid;
+  padding:10px 30px 20px;
+  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
 `
 const PostBox = styled.div`
   display: flex;
@@ -105,7 +105,7 @@ export const DebateTopicContentBox = () => {
             
           </InfoBox>
 
-          <ImgBox width='100'><img src={res.imgUrl === 'default' ? '/img/default-thumbnail.png' : res.imgUrl} alt='' /></ImgBox>
+          <FitImgBox width='100' height='90'><img src={res.imgUrl === 'default' ? '/img/default-thumbnail.png' : res.imgUrl} alt='' /></FitImgBox>
         </PostBox>
       }))
     }

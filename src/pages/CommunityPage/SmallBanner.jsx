@@ -22,9 +22,6 @@ const MoveButtonLine = styled.div`
     margin-left: 10px;
   }
 `
-const StyledCategory = styled.div`
-  
-`
 
 const KeywordLine = styled.div`
   display: flex;

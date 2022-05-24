@@ -6,11 +6,11 @@ import dompurify from 'dompurify'
 import { useNavigate } from 'react-router-dom'
 
 const CotentBox = styled.div`
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: white;
   border: ${({theme})=> theme.colors.gray_1};
   padding:20px 30px;
-  border: ${({theme})=> theme.colors.gray_1} 1px solid;
+  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
 ` 
 
 const PostBox = styled.div`
