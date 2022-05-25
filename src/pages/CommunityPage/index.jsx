@@ -3,7 +3,9 @@ import { CommunityCategoryMenus } from '@data/staticData'
 import { BasicSearchBox, BasicSelectBox, HeaderInfoBox, ImgBox, Line } from '@styles/commonStyle'
 import React from 'react'
 import styled from 'styled-components'
+import { Routes, Route } from  'react-router-dom'; 
 import CommunityCotentBox from './CommunityCotentBox'
+import { DetailCommunityPost } from './DetailCommunityPost'
 
 const IndexContainor = styled.div`
   width: 100%;
@@ -169,10 +171,14 @@ const CommunityPage = () => {
               
             </HeaderBox>
 
-            <CommunityCotentBox />
-            <ContentsBox>
+            
+            <Routes>
+              {/* 커뮤니티 게시물 리스트 부분 */}
+              <Route path="/" element={<CommunityCotentBox />}></Route>
 
-            </ContentsBox>
+              {/* 커뮤니티 게시물 디테일 부분 */}
+              <Route path="detail-communitypost" element={<DetailCommunityPost />} />
+            </Routes>
           </MainBox>
           
 

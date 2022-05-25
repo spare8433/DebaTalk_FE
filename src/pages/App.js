@@ -75,7 +75,7 @@ function App() {
               <Route path="/profile" element={<AuthRoute><ProfilePage /></AuthRoute>} />
               <Route path="/debate-forum/*" element={<DebateForumPage />} />
               <Route path="/debate-topic-board" element={<DebateTopicBoardPage />} />
-              <Route path="/community" element={<CommunityPage />} />
+              <Route path="/community/*" element={<CommunityPage />} />
               
             </Routes>
           </Suspense>

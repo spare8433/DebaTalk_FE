@@ -1,5 +1,5 @@
 import { getPostAPI } from '@api/post'
-import { FitImgBox, ImgBox } from '@styles/commonStyle'
+import { FitImgBox } from '@styles/commonStyle'
 import React, { memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import dompurify from 'dompurify'
@@ -74,8 +74,6 @@ const CommunityCotentBox = () => {
   const [postContent,setPostContent] = useState(null)
 
   useEffect( ()=>{
-    const sanitizer = dompurify.sanitize;
-
     const fetchContent = async () => {
 
       const querry = {
@@ -87,7 +85,7 @@ const CommunityCotentBox = () => {
       const { data } = await getPostAPI(querry);
       console.log(data);
       setPostContent(data.map((res,index)=>{
-        return <PostBox key={'debatePostItmes'+index} onClick={()=>navigate('./detail-debatepost',{ state: { id:res.id}})}>
+        return <PostBox key={'debatePostItmes'+index} onClick={()=>navigate('./detail-communitypost',{ state: { id:res.id}})}>
           <TextBox>
 
             <TitleLine>
