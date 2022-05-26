@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import { BasicSearchBox, BasicSelectBox, HeaderInfoBox, ImgBox, Line } from '@styles/commonStyle'
 import DebateCotentBox from './DebateCotentBox'
 import { Header } from '@components/Header'
-import { NavLinkList } from '@components/NavLinkList'
+import  NavLinkList  from '@components/NavLinkList'
 import { Routes, Route } from  'react-router-dom'; 
 import DetailDebatePage from 'pages/DetailDebatePage'
+import { DebateCategoryMenus, DebateModeMenus } from '@data/staticData'
 
 const IndexContanior = styled.div`
   width: 100%;
@@ -52,8 +53,6 @@ const DebateForumPage = () => {
   const [debateMode,setDebateMode] = useState('전체');
   const [debateCategory,setDebateCategory] = useState('전체');
 
-  const categoryList = ['전체','정치','경제','사회','문화','교육','과학 / it','역사','철학','스포츠','환경','기타'];
-  const debateModeList = ['전체','주제토론','찬반토론','끝장토론'];
   return (
     <IndexContanior>
 
@@ -83,14 +82,14 @@ const DebateForumPage = () => {
                 <ModeItem current={debateMode === '찬반토론'}>찬반토론</ModeItem>
                 <ModeItem current={debateMode === '배틀토론'}>배틀토론</ModeItem> */}
     
-                {debateModeList.map((res) => {return <ModeItem key={'debateModeItems'+res}>{res}</ModeItem>})}
+                {DebateModeMenus.map((res) => {return <ModeItem key={'debateModeItems'+res} value={res}>{res}</ModeItem>})}
               </NavLinkList>
     
     
               <h2 style={{"fontSize":"22px"}}>카테고리</h2>
                 
               <NavLinkList width='100%' onClick={setDebateCategory} value={debateCategory} category='debateCategory' key='b'>
-                {categoryList.map((res) => {return <CategoryItem key={'debateCategoryItems'+res}>{res}</CategoryItem>})}
+                {DebateCategoryMenus.map((res) => {return <CategoryItem key={'debateCategoryItems'+res} value={res}>{res}</CategoryItem>})}
               </NavLinkList>
             </CategoryBox>
     

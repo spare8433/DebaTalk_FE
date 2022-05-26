@@ -1,5 +1,5 @@
 import { Containor } from '@styles/commonStyle'
-import React from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 import { css } from 'styled-components'
 
@@ -12,12 +12,12 @@ const Itmes = styled.div`
     cursor: pointer;
     &:hover,&:visited{
       color: ${({theme})=> theme.colors.main};
-      font-weight: 600;
+      font-weight: 500;
     }
 
     ${props => props.current ? css`
         color: ${({theme})=> theme.colors.main};
-        font-weight: 600;` 
+        font-weight: 500;` 
       : ''
     }
   }
@@ -25,17 +25,12 @@ const Itmes = styled.div`
 `
 
 
-export const NavLinkList = ({width,onClick,children,value,category}) => {
-
-  console.log(children);
-  
+const NavLinkList = ({width,onClick,children,value,category}) => {
   return (
     <NavContainor width={width}>
       {children.map((res,index)=>{ 
-        console.log(res.props.children === value);
-        return <Itmes key={category + 'Items' + index} current={value===res.props.children} onClick={()=>{
-          onClick(res.props.children);
-
+        return <Itmes key={category + 'Items' + index} current={value===res.props.value} onClick={()=>{
+          onClick(res.props.value);
         }}>
           {res}
         </Itmes>
@@ -43,3 +38,4 @@ export const NavLinkList = ({width,onClick,children,value,category}) => {
     </NavContainor>
   )
 }
+export default memo(NavLinkList)
