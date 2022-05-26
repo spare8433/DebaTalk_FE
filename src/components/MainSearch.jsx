@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 const MainSearchBox = styled.div`
   width: 100%;
+  background-color: white;
   box-sizing: border-box;
   border: #A38AF8 4px solid;
   border-radius:25px;

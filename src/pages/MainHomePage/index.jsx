@@ -5,7 +5,7 @@ import { Header } from '@components/Header';
 
 import { MainCarousel } from './mainCarousel'
 import { MainDebateContent } from '@components/mainDebateContent'
-import { MainSearch } from '@components/mainSearch'
+import { MainSearch } from '@components/MainSearch'
 import { RecentReaction } from '@components/recentReaction'
 
 const IndexContainor = styled.div`
