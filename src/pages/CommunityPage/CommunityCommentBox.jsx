@@ -8,12 +8,12 @@ const IndexContainor = styled.div`
 `
 const ContentContainor = styled.div`
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
 `
 const ContentHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 8px 0 16px;
+  margin: 8px 20px 16px;
   h2 {
     font-size: 18px;
     font-weight: 500;
@@ -37,7 +37,7 @@ const CommentItem = styled.div`
   const PostBox = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 10px 0;
+    padding: 10px 20px;
   `
     const ProfileLine = styled.div`
       display: flex;
@@ -73,7 +73,18 @@ const CommentItem = styled.div`
     
   `
     const ReplyItem = styled(CommentItem)`
+      padding: 20px 20px 20px 50px;
       background-color: ${({theme})=> theme.colors.background};
+      position:relative;
+    `
+    const ReplyIcon = styled.div`
+      position: absolute;
+      position: absolute;
+      left: 25px;
+      width: 12px;
+      height: 12px;
+      border-left: 1px solid #c5cbd0;
+      border-bottom: 1px solid #c5cbd0;
     `
 
 export const CommunityCommentBox = () => {
@@ -121,9 +132,32 @@ export const CommunityCommentBox = () => {
 
             {/* 답글 리스트 박스 */}
             <RepliesBox>
+
               <ReplyItem>
-                d
-                {/* 댓글과 거의 동일 */}
+                <ProfileLine>
+                  <CircleImgBox><img src="" alt="" /></CircleImgBox>
+                  <h3>닉네임</h3>
+                  <span>2 시간전</span>
+                  <ReplyIcon></ReplyIcon>
+                </ProfileLine>
+
+                <PostContentLine>답글내용</PostContentLine>
+
+                <InteractButtonLine>
+
+                  <InteractButtonItem>
+                    <ImgBox></ImgBox><span>추천</span>
+                  </InteractButtonItem>
+
+                  <InteractButtonItem>
+                    <ImgBox></ImgBox><span>답글</span>
+                  </InteractButtonItem>
+
+                  <InteractButtonItem>
+                    <ImgBox></ImgBox><span>신고</span>
+                  </InteractButtonItem>
+                  
+                </InteractButtonLine>
               </ReplyItem>
             </RepliesBox>
 

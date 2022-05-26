@@ -1,4 +1,4 @@
-import { ImgBox } from '@styles/commonStyle'
+import { ImgBox, LightGrayButton, MainButton, SubButton } from '@styles/commonStyle'
 import React from 'react'
 import styled from 'styled-components'
 import { CommunityCommentBox } from './CommunityCommentBox'
@@ -12,7 +12,7 @@ const ContentContainor = styled.div`
   border-radius: 8px;
   background-color: white;
   border: ${({theme})=> theme.colors.gray_1};
-  padding:10px 20px 20px;
+  padding:10px 0 20px;
   box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
 `
 
@@ -21,7 +21,7 @@ const ContentHeader = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 80px;
-  padding: 10px 0 12px;
+  padding: 10px 20px 12px;
   border-bottom: 1px solid ${({theme})=> theme.colors.gray_1};
 `
   const TitleLine = styled.div`
@@ -57,7 +57,7 @@ const ContentHeader = styled.div`
       }
     `
 const ContentBox = styled.div`
-  padding: 16px 0;
+  padding: 16px 20px;
 ` 
   const PostMainImgBox = styled(ImgBox)`
     max-height: 300px;
@@ -69,7 +69,7 @@ const ContentBox = styled.div`
 
 const RecButtonBox = styled.div`
   text-align: center;
-  padding: 16px 0;
+  padding: 16px 20px;
   border-top: 1px solid ${({theme})=> theme.colors.gray_2};
   border-bottom: 1px solid ${({theme})=> theme.colors.gray_2};
   button{
@@ -117,8 +117,8 @@ export const DetailCommunityPost = () => {
         </ContentBox>
 
         <RecButtonBox>
-          <button>추천</button>
-          <button>비추천</button>
+          <MainButton width='80' height='30' fontSize='14'>추천</MainButton>
+          <SubButton width='80' height='30' fontSize='14'>비추천</SubButton>         
         </RecButtonBox>
 
         {/* 댓글리스트  */}

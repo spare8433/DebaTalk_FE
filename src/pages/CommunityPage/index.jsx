@@ -1,6 +1,6 @@
 import { Header } from '@components/Header'
 import { CommunityCategoryMenus } from '@data/staticData'
-import { BasicSearchBox, BasicSelectBox, HeaderInfoBox, ImgBox, Line } from '@styles/commonStyle'
+import { HeaderInfoBox, Line } from '@styles/commonStyle'
 import React from 'react'
 import styled from 'styled-components'
 import { Routes, Route } from  'react-router-dom'; 
@@ -58,55 +58,6 @@ const PrColorLine = styled(Line)`
 const MainBox = styled.div`
   width: 860px;
 `
-const HeaderBox = styled.div`
-  width: 100%;
-  background-color: white;
-  padding:20px 20px 16px;
-  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  h2{
-    font-size: 22px;
-    font-weight:500;
-  }
-
-`
-  const SelectLine = styled.div`
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-top: 16px;
-  `
-    const CategoryItmes = styled.ul`
-      display:flex;
-      font-size: 18px;
-      li{
-        display: flex;
-        align-items: fle;
-        margin: 0 16px;
-
-        ${ImgBox} {
-
-        }
-
-        p{
-          color : ${({theme})=>theme.colors.gray_1};
-          padding: 0 10px;
-          &:hover{
-            color: ${({theme})=>theme.colors.main};
-            font-weight:500;
-          }
-        }
-      }
-    `
-
-    const InputItmes = styled.div`
-      display: flex;
-    `
-
-      const SelectBox = styled(BasicSelectBox)`
-        margin-right:10px;
-      `
 
 const ContentsBox = styled.div`
   width: 100%;
@@ -140,39 +91,7 @@ const CommunityPage = () => {
           </NavBox>
 
           <MainBox>
-
-            <HeaderBox>
-              <h2>{'전체'}</h2>
-
-              <SelectLine>
-                <CategoryItmes>
-                  <li><ImgBox width='24'><img src="/img/clock_main-color.png" alt="" /></ImgBox><p>최신</p></li>
-                  <li><ImgBox width='24'><img src="/img/thumbs-up_main-color.png" alt="" /></ImgBox><p>추천</p></li>
-                  <li><ImgBox width='24'><img src="/img/fire_main-color.png" alt="" /></ImgBox><p>인기</p></li>
-                </CategoryItmes>
-
-                <InputItmes>
-
-                  <SelectBox>
-                    <select>
-                      <option value="제목">제목</option>
-                      <option value="내용">내용</option>
-                      <option value="제목 + 내용">제목 + 내용</option>
-                    </select>
-                  </SelectBox>
-
-                  <BasicSearchBox>
-                    <ImgBox><img alt='돋보기' src='./img/search.png'></img></ImgBox>
-                    <input placeholder='검색'></input>
-                  </BasicSearchBox>
-
-                </InputItmes>
-              </SelectLine>
-              
-            </HeaderBox>
-
-            
-            <Routes>
+            <Routes>    
               {/* 커뮤니티 게시물 리스트 부분 */}
               <Route path="/" element={<CommunityCotentBox />}></Route>
 
@@ -181,9 +100,7 @@ const CommunityPage = () => {
             </Routes>
           </MainBox>
           
-
         </ContentsContainor>
-
 
       </CommunityPageContainor>
     </IndexContainor>
