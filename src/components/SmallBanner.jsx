@@ -9,7 +9,7 @@ const IndexContainor = styled(Containor)`
 const SmallBannerBox = styled.div`
   width:1160px;
   height: 50px;
-  margin: 20px auto;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content:space-between;
