@@ -1,9 +1,13 @@
 import { getPostAPI } from '@api/post'
-import { FitImgBox, ImgBox } from '@styles/commonStyle'
+import { FitImgBox } from '@styles/commonStyle'
 import React, { memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import dompurify from 'dompurify'
 import { useNavigate } from 'react-router-dom'
+
+const IndexContainor = styled.div`
+  width: 100%;
+`
 
 const CotentBox = styled.div`
   border-radius: 8px;
@@ -12,6 +16,8 @@ const CotentBox = styled.div`
   padding:10px 30px 20px;
   box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
 ` 
+
+
 
 const PostBox = styled.div`
   display: flex;
@@ -74,8 +80,6 @@ const CommunityCotentBox = () => {
   const [postContent,setPostContent] = useState(null)
 
   useEffect( ()=>{
-    const sanitizer = dompurify.sanitize;
-
     const fetchContent = async () => {
 
       const querry = {
@@ -87,7 +91,7 @@ const CommunityCotentBox = () => {
       const { data } = await getPostAPI(querry);
       console.log(data);
       setPostContent(data.map((res,index)=>{
-        return <PostBox key={'debatePostItmes'+index} onClick={()=>navigate('./detail-debatepost',{ state: { id:res.id}})}>
+        return <PostBox key={'debatePostItmes'+index} onClick={()=>navigate('./detail-communitypost',{ state: { id:res.id}})}>
           <TextBox>
 
             <TitleLine>
@@ -117,9 +121,11 @@ const CommunityCotentBox = () => {
   
 
   return (
-    <CotentBox>
-      {postContent !== null && postContent}
-    </CotentBox>
+    <IndexContainor>
+      <CotentBox>
+        {postContent !== null && postContent}
+      </CotentBox>
+    </IndexContainor>
   )
 }
 

@@ -24,6 +24,8 @@ export const Title = styled.div`
   font-weight: 600;
   font-size: 18px;
   margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
 `
 
 export const TitleBox=styled.div`

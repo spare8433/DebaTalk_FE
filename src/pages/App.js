@@ -15,6 +15,7 @@ const ProfilePage = lazy(() => import('./ProfilePage'));
 const DebateForumPage = lazy(() => import('./DebateForumPage'));
 const DebateTopicBoardPage = lazy(() => import('./DebateForumPage/DebateTopicBoardPage'));
 const CommunityPage = lazy(() => import('./CommunityPage'));
+const TotalSearchPage = lazy(() => import('./TotalSearchPage'));
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -75,7 +76,8 @@ function App() {
               <Route path="/profile" element={<AuthRoute><ProfilePage /></AuthRoute>} />
               <Route path="/debate-forum/*" element={<DebateForumPage />} />
               <Route path="/debate-topic-board" element={<DebateTopicBoardPage />} />
-              <Route path="/community" element={<CommunityPage />} />
+              <Route path="/community/*" element={<CommunityPage />} />
+              <Route path="/total-search" element={<TotalSearchPage />} />
               
             </Routes>
           </Suspense>

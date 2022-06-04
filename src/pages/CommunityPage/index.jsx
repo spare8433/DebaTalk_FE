@@ -3,7 +3,9 @@ import { CommunityCategoryMenus } from '@data/staticData'
 import { BasicSearchBox, BasicSelectBox, HeaderInfoBox, ImgBox, Line } from '@styles/commonStyle'
 import React from 'react'
 import styled from 'styled-components'
+import { Routes, Route } from  'react-router-dom'; 
 import CommunityCotentBox from './CommunityCotentBox'
+import { DetailCommunityPost } from './DetailCommunityPost'
 
 const IndexContainor = styled.div`
   width: 100%;
@@ -138,46 +140,50 @@ const CommunityPage = () => {
           </NavBox>
 
           <MainBox>
+            <Routes>    
+            
 
-            <HeaderBox>
-              <h2>{'전체'}</h2>
+              {/* 커뮤니티 게시물 리스트 부분 */}
+              <Route path="/" element={<>
+                <HeaderBox>
+                  <h2>{'전체'}</h2>
 
-              <SelectLine>
-                <CategoryItmes>
-                  <li><ImgBox width='24'><img src="/img/clock_main-color.png" alt="" /></ImgBox><p>최신</p></li>
-                  <li><ImgBox width='24'><img src="/img/thumbs-up_main-color.png" alt="" /></ImgBox><p>추천</p></li>
-                  <li><ImgBox width='24'><img src="/img/fire_main-color.png" alt="" /></ImgBox><p>인기</p></li>
-                </CategoryItmes>
+                  <SelectLine>
+                    <CategoryItmes>
+                      <li><ImgBox width='24'><img src="/img/clock_main-color.png" alt="" /></ImgBox><p>최신</p></li>
+                      <li><ImgBox width='24'><img src="/img/thumbs-up_main-color.png" alt="" /></ImgBox><p>추천</p></li>
+                      <li><ImgBox width='24'><img src="/img/fire_main-color.png" alt="" /></ImgBox><p>인기</p></li>
+                    </CategoryItmes>
 
-                <InputItmes>
+                    <InputItmes>
 
-                  <SelectBox>
-                    <select>
-                      <option value="제목">제목</option>
-                      <option value="내용">내용</option>
-                      <option value="제목 + 내용">제목 + 내용</option>
-                    </select>
-                  </SelectBox>
+                      <SelectBox>
+                        <select>
+                          <option value="제목">제목</option>
+                          <option value="내용">내용</option>
+                          <option value="제목 + 내용">제목 + 내용</option>
+                        </select>
+                      </SelectBox>
 
-                  <BasicSearchBox>
-                    <ImgBox><img alt='돋보기' src='./img/search.png'></img></ImgBox>
-                    <input placeholder='검색'></input>
-                  </BasicSearchBox>
+                      <BasicSearchBox>
+                        <ImgBox><img alt='돋보기' src='./img/search.png'></img></ImgBox>
+                        <input placeholder='검색'></input>
+                      </BasicSearchBox>
 
-                </InputItmes>
-              </SelectLine>
+                    </InputItmes>
+                  </SelectLine>
+                  
+                </HeaderBox>
+                <CommunityCotentBox />
+              </>}></Route>
+
+              {/* 커뮤니티 게시물 디테일 부분 */}
+              <Route path="detail-communitypost" element={<DetailCommunityPost />} />
               
-            </HeaderBox>
-
-            <CommunityCotentBox />
-            <ContentsBox>
-
-            </ContentsBox>
+            </Routes>
           </MainBox>
           
-
         </ContentsContainor>
-
 
       </CommunityPageContainor>
     </IndexContainor>

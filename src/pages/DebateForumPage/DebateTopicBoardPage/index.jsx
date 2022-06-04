@@ -1,5 +1,6 @@
 import { Header } from '@components/Header'
-import { NavLinkList } from '@components/NavLinkList'
+import  NavLinkList  from '@components/NavLinkList'
+import { DebateCategoryMenus } from '@data/staticData'
 import { BasicSearchBox, BasicSelectBox, HeaderInfoBox, ImgBox, Line, TitleBox } from '@styles/commonStyle'
 import React from 'react'
 import styled from 'styled-components'
@@ -41,8 +42,6 @@ const DetailControllBox = styled.div`
 
 const DebateTopicBoardPage = () => {
 
-
-  const categoryList = ['전체','정치','경제','사회','문화','교육','과학 / it','역사','철학','스포츠','환경','기타'];
   return (
     <IndexContainor>
       
@@ -65,7 +64,7 @@ const DebateTopicBoardPage = () => {
           <h2 style={{"fontSize":"26px"}}>카테고리</h2>
 
           <NavLinkList width='100%' category='debateCategory' key='b'>
-                  {categoryList.map((res) => {return <CategoryItem key={'debateCategoryItems'+res}>{res}</CategoryItem>})}
+                  {DebateCategoryMenus.map((res) => {return <CategoryItem key={'debateCategoryItems'+res} value={res}>{res}</CategoryItem>})}
           </NavLinkList>
         </CategoryBox>
         
