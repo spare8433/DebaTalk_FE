@@ -4,7 +4,9 @@ import {instanceWithAuth} from './index'
 export const createPostAPI = data => instanceWithAuth('posts').post('',data)
 
 // post 불러오기
-export const getPostAPI = querry => instanceWithAuth('posts').get(`all?limit=${querry.limit}&skip=${querry.skip}`)
+export const getPostAPI = querry => instanceWithAuth('posts').get(
+  `all?limit=${querry.limit}&skip=${querry.skip}&key=${querry.key}&title=${querry.title}&category=${querry.category}`
+)
 
 // 특정 게시물 가져오기
-export const getOnePostAPI = id => instanceWithAuth('posts').get(`/${id}`)
+export const getOnePostAPI = id => instanceWithAuth('posts').get(`?${id}`)

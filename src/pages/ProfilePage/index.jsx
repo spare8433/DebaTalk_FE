@@ -1,7 +1,7 @@
 import { uploadUserImageAPI } from '@api/user';
 import { Header } from '@components/Header';
 import { BasicButtonBox, CircleImgBox, Containor, LightGrayButton, Line } from '@styles/commonStyle'
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import { useSelector,useDispatch } from 'react-redux'
 import { setUser } from '@store/actions'
@@ -74,19 +74,24 @@ const WithdrawButtonBox = styled(BasicButtonBox)`
 `
 
 const ProfilePage = () => {
-  const [imageFile,setImageFile] = useState([])
+  const [imageFile, setImageFile] = useState([])
+  // const imageFile = useRef()
+
+  // 사가로 가야되고
+  // 1
   const [previewImage,setPreviewImage] = useState('/img/default_user.png')
+  // 2
   const [isDisableSubmit,setIsDisableSubmit] = useState(true)
 
-  const user = useSelector(state=> state.user);
+  const { meData } = useSelector(state=> state.user);
   const dispatch = useDispatch()
 
-  console.log(user);
+  // console.log('이런식이면 사이트가 두번 도는 거지요?');
 
-  useEffect(() => {
-    console.log(user);
-    user.imgUrl === 'default' ? setPreviewImage('/img/default_user.png') : setPreviewImage(user.imgUrl) 
-  }, [user])
+  // useEffect(() => {
+  //   console.log('useeffect',user);
+  //   user.imgUrl === 'default' ? setPreviewImage('/img/default_user.png') : setPreviewImage(user.imgUrl)
+  // }, [user])
   
 
   const onLoadFile = (e) => {
@@ -94,25 +99,24 @@ const ProfilePage = () => {
     fileReader.readAsDataURL(e.currentTarget.files[0]);
     
     fileReader.onload = () =>{
-      console.log(fileReader);
-      console.log(fileReader.result);
+      // imageFile.current = fileReader.result
       setPreviewImage(fileReader.result)
     }
+    // imageFile.current = e.currentTarget.files
     setImageFile(e.currentTarget.files)
-    console.log(e.currentTarget.files);
-    
     
     setIsDisableSubmit(false);
   }
 
   // const [imageFile,onChangeImageFile]= useInputFile()
 
+  // 유저 이미지 업로드
   const onSaveImage = () =>{
     const formdata = new FormData();
     formdata.append('image',imageFile[0])
-    dispatch(setUser({...user,imgUrl:previewImage}))
+    dispatch(setUser({...meData, imgUrl: previewImage}))
     uploadUserImageAPI(formdata);
-    setIsDisableSubmit(true);
+    // setIsDisableSubmit(true);
   }
 
   return (
@@ -130,31 +134,31 @@ const ProfilePage = () => {
             <ImgLine>
               <label htmlFor="fileElem"><CircleImgBox width='100'><img src={previewImage} alt=''></img></CircleImgBox></label>
             </ImgLine>
-           
+
             <InputLine>
               <label htmlFor="fileElem">이미지 업로드</label>
               <button onClick={onSaveImage} disabled={isDisableSubmit}>저장</button>
             </InputLine>
-           
+          
           </ImageUploadBox>
 
           <h3>닉네임</h3>
           <ChangeNickNameBox>
-            <p>{user.nickname}</p>
+            <p>{meData.nickname}</p>
             
           </ChangeNickNameBox>
           
           <h3>아이디</h3>
-          <p>{user.userId}</p>
+          <p>{meData.userId}</p>
 
           <h3>이메일</h3>
-          <p>{user.email}</p>
+          <p>{meData.email}</p>
 
           <h3>생성일자</h3>
-          <p>{user.createDate}</p>
+          <p>{meData.createDate}</p>
 
           <h3>레벨 | 포인트</h3>
-          <p>{user.level +' lv | ' + user.point + ' point'}</p>
+          <p>{meData.level +' lv | ' + meData.point + ' point'}</p>
 
         </InformationBox>
         

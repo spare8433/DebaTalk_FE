@@ -1,12 +1,12 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useEffect } from 'react'
 import { CircleImgBox } from '@styles/commonStyle'
 import styled from 'styled-components'
 import {useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { isLogin } from '@services/isLogin'
-import { getUser } from '@api/user'
+import { fetchUserProfileRequest } from '@store/user/user.actions'
 import { getCookie } from '@cookie/'
-import { setUser } from '@store/actions'
+
 
 const ProfileContainor = styled.div`
 	display: flex;
@@ -31,27 +31,27 @@ const LoginLineStyle = styled.div`
 
 const Profile = ({mode,onClick}) => {
 	const navigation = useNavigate();
-	const dispatch = useDispatch();
 
-	const [userData,setUserData]= useState(null)
 	const user = useSelector(state=> state.user);
+	const dispatch = useDispatch()
 
-	useEffect(()=>{
-		console.log('1');
-		const fetchProfile = async () =>{
-			console.log('2');
-			const user = await getUser(getCookie('token'));
-      dispatch(setUser(user.data));
-		}
-		fetchProfile()
-	},[])
+	useEffect(() => {
+		console.log(1);
+		if (user.myData !== null) return; // 포스트가 존재하면 아예 요청을 하지 않음
+    dispatch(fetchUserProfileRequest())
+		console.log(2);
+	}, [])
+	
+
+	console.log(isLogin());
+	console.log(user);
 
   return (
     <ProfileContainor mode={mode}>
-			{isLogin() ? 
+			{user.myData !== null ? 
 				<ProfileLine onClick={onClick}>
-					<CircleImgBox width='32'><img alt='userImg' src={user.imgUrl === 'default' ? './img/default_user.png' : user.imgUrl }></img></CircleImgBox>
-					<h2>{user.nickname}</h2>
+					<CircleImgBox width='32'><img alt='userImg' src={!!user && user.myData.imgUrl}></img></CircleImgBox>
+					<h2>{!!user && user.myData.nickname}</h2>
 				</ProfileLine> 
 			: 
 				<LoginLineStyle onClick={()=>{navigation('/login')}}>로그인</LoginLineStyle>}

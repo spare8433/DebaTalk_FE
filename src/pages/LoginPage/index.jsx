@@ -2,7 +2,7 @@ import {React} from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import { loginAPI, getUser } from '@api/user';
+import { loginAPI, getUserAPI } from '@api/user';
 import { BasicInput } from '@components/basicInput';
 import { setCookie } from '@cookie';
 import useInput from '@hooks/useInput';
@@ -12,6 +12,8 @@ import { Containor, ImgBox, Line, MainButton, SubButton} from '@styles/commonSty
 import { LoginContainor, LogoBox, SubBox } from './styles';
 import { setUser } from 'store/actions';
 import { useDispatch } from 'react-redux';
+import { logInRequest } from '@store/user/user.actions';
+
 
 
 const LoginBox = styled.div`
@@ -47,24 +49,9 @@ const LoginPage = () => {
   const dispatch = useDispatch()
   
   const onSubmitForm = async (e) => {
-    
     e.preventDefault()
-    try {
-      const {data} = await loginAPI({
-        userId,
-        password
-      })
-      setCookie('token',data.token)
-      console.log(data.token);
-      
-      const user = await getUser(data.token);
-      dispatch(setUser(user.data));
-
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
-    
+    console.log('d');
+    dispatch(logInRequest({userId,password}))
   }
   
   const cssStyle = css`

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Containor, ImgBox } from '../../styles/commonStyle'
 import styled from 'styled-components'
 import { Routes, Route, useNavigate,useLocation } from 'react-router-dom';
-import Profile from '@components/profile';
+import Profile from '@components/Profile';
 import { SlideMenu } from '@components/slideMenu';
-import { WritePost } from './managePost/writePost';
+import { WritePost } from './manageDebatePost/writeDebatePost';
 
 const AdminContainor = styled.div`
   height: 100%;
