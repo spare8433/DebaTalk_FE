@@ -11,30 +11,28 @@ const initialState = {
 	logInLoading: false,
 	logInDone: false,
 	logInError: null,
-	logOutLoading: false,
-	logOutDone: false,
-	logOutError: null,
 	myData: null
 }
 
 export const userReducers = (state = initialState, action) => {
   return produce(state, draft => {
     switch (action.type) {
+
       //* SIGN_UP
-      // case actions.SIGN_UP_REQUEST:
-			// 	draft.signUpLoading = true
-			// 	draft.signUpDone = false
-			// 	draft.signUpError = null
-			// 	break
-			// case actions.SIGN_UP_SUCCESS:
-			// 	draft.signUpLoading = false
-			// 	draft.signUpDone = true
-			// 	draft.myData = action.data
-			// 	break
-			// case actions.SIGN_UP_FAILURE:
-			// 	draft.signUpLoading = false
-			// 	draft.signUpError = action.error
-			// 	break
+      case actions.SIGN_UP_REQUEST:
+				draft.signUpLoading = true
+				draft.signUpDone = false
+				draft.signUpError = null
+				break
+			case actions.SIGN_UP_SUCCESS:
+				draft.signUpLoading = false
+				draft.signUpDone = true
+				draft.myData = action.data
+				break
+			case actions.SIGN_UP_FAILURE:
+				draft.signUpLoading = false
+				draft.signUpError = action.error
+				break
 
 			//* LOG_IN
 			case actions.LOG_IN_REQUEST:
@@ -61,13 +59,20 @@ export const userReducers = (state = initialState, action) => {
 			case actions.FETCH_USER_PROFILE_SUCCESS:
 				draft.loadMyInfoLoading = false
 				draft.loadMyInfoDone = true
-				draft.myData = action.data
+				draft.myData = { ...action.data, imgUrl: action.data.imgUrl === 'default' ? '/img/default_user.png' : action.data.imgUrl }
 				break;
 			case actions.FETCH_USER_PROFILE_FAILURE:
 				draft.loadMyInfoLoading = false
 				draft.loadMyInfoError = action.error
 				break;
-
+			
+				//* LOG OUT
+				case actions.LOG_OUT_REQUEST:
+					draft.loadMyInfoDone = false
+					break
+				case actions.LOG_OUT_SUCCESS:
+					draft.myData = null
+					break
 
 			default:
 				break

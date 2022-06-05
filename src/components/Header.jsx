@@ -4,10 +4,9 @@ import styled from 'styled-components'
 import { ImgBox } from '../styles/commonStyle'
 import  Profile  from '@components/Profile'
 import { isLogin } from '@services/isLogin'
-import { removeCookie } from '@cookie/'
-import { deleteUser } from 'store/actions'
 import { useDispatch } from 'react-redux'
 import { css } from 'styled-components'
+import { logOutRequest } from '@store/user/user.actions'
 
 const IndexContainor = styled.div`
   width: 100%;
@@ -174,10 +173,8 @@ export const Header = () => {
   }
 
   const logout = () => {
-    removeCookie('token');
-    dispatch(deleteUser());
+    dispatch(logOutRequest());
     setIsDropListToggleOn(!isDropListToggleOn);
-    navigate('/');
   }
 
   useEffect(()=>{

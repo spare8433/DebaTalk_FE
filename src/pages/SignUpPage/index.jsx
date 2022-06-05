@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { css } from 'styled-components'
-import { loginAPI, sginUpAPI } from '../../api/user'
-import { BasicInput } from '../../components/basicInput'
-import { setCookie } from '../../cookie'
-import useInput from '../../hooks/useInput'
-import { Containor, MainButton } from '../../styles/commonStyle'
-import { checkEmail, checkId, checkNickname, checkPassword, checkRePassword, duplicateCheckAll, emptyCheckAll, regexCheckAll } from './check'
+import { BasicInput } from '@components/basicInput'
+import useInput from '@hooks/useInput'
+import { Containor, MainButton } from '@styles/commonStyle'
+import { checkEmail, checkId, checkNickname, checkPassword, checkRePassword, emptyCheckAll, regexCheckAll } from './check'
+import { useDispatch } from 'react-redux'
+import { signUpRequest } from '@store/user/user.actions'
 
 const SginUpContainor = styled.div`
   width: 450px;
@@ -42,7 +41,7 @@ const SginUpBox = styled.div`
 `
 
 const SginUpPage = () => {
-  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [userId,onChangeUserId] = useInput('')
   const [email,onChangeUserEmail] = useInput('')
@@ -62,34 +61,21 @@ const SginUpPage = () => {
 
     const isEmptyAll = emptyCheckAll({userId,email,nickname,password})
     const isRegexAll = regexCheckAll({userId,email,nickname,password})
-    const isDuplicateAll = duplicateCheckAll({userId,email,nickname,password})
 
     // 회원 가입전 오류 체크
     if(!isEmptyAll.check)             // 입력 값 공백 확인
       return alert(isEmptyAll.msg)
     else if(!isRegexAll.check)        // 입력 값 유효성 확인
       return alert(isRegexAll.msg)
-    else if(!isDuplicateAll.check)    // 닉네임 및 아이디 중복확인
-      return alert(isDuplicateAll.msg)
     else{
-
-      console.log('회원가입 성공');
-      const {data} = await sginUpAPI({
+      console.log('입력값 체크 완료');
+      dispatch(signUpRequest({
         userId,
         email,
         nickname,
         password
-      })
-
-      await loginAPI({
-        userId,
-        password
-      })
-      setCookie('token',data.token)
-
-      navigate('/');
+      }))
     }
-    
   }
 
   const checkObject = (data) => {
