@@ -4,7 +4,6 @@ import { BasicButtonBox, CircleImgBox, Containor, LightGrayButton, Line } from '
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import { useSelector,useDispatch } from 'react-redux'
-import { setUser } from '@store/actions'
 
 const ProfileContainor = styled.div`
   padding:16px 16px;
@@ -114,7 +113,7 @@ const ProfilePage = () => {
   const onSaveImage = () =>{
     const formdata = new FormData();
     formdata.append('image',imageFile[0])
-    dispatch(setUser({...meData, imgUrl: previewImage}))
+    // dispatch(setUser({...meData, imgUrl: previewImage}))
     uploadUserImageAPI(formdata);
     // setIsDisableSubmit(true);
   }

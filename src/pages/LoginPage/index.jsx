@@ -2,15 +2,10 @@ import {React} from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import { loginAPI, getUserAPI } from '@api/user';
 import { BasicInput } from '@components/basicInput';
-import { setCookie } from '@cookie';
 import useInput from '@hooks/useInput';
 import { Containor, ImgBox, Line, MainButton, SubButton} from '@styles/commonStyle';
-
-
 import { LoginContainor, LogoBox, SubBox } from './styles';
-import { setUser } from 'store/actions';
 import { useDispatch } from 'react-redux';
 import { logInRequest } from '@store/user/user.actions';
 

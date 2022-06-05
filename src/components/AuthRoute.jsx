@@ -4,7 +4,6 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { isLogin } from 'services/isLogin'
-import { setUser } from 'store/actions'
 
 // version  {  1 : 일반 사용자  2 : 관리자 }
 export const AuthRoute = ({ version,children}) => {
