@@ -1,7 +1,7 @@
 import {React, useState, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import { CustomCarousle } from '@components/customCarousle'
-import { getPostAPI } from 'api/post'
+import { getPostsAPI } from 'api/post'
 
 const Content = styled.div`
   width: ${({width}) => width + 'px'};  
@@ -67,7 +67,7 @@ export const MainCarousel = () => {
     
     
     const setCarousle = async () => {
-      const {data} = await getPostAPI(querry);
+      const {data} = await getPostsAPI(querry);
       console.log(data);
 
       data.map((res)=>{

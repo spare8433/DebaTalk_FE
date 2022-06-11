@@ -14,7 +14,7 @@ const initialState = {
 	myData: null
 }
 
-export const userReducers = (state = initialState, action) => {
+export const userReducer = (state = initialState, action) => {
   return produce(state, draft => {
     switch (action.type) {
 

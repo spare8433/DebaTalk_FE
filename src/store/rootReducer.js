@@ -1,6 +1,10 @@
 import {combineReducers} from 'redux';
-import { userReducers } from './user/user.reducer';
+import { communityPostReducer } from './communityPost/communityPost.reducer';
+import { communityPostsReducer } from './communityPosts/communityPosts.reducer';
+import { userReducer } from './user/user.reducer';
 
 export default combineReducers({
-  user:userReducers
+  user:userReducer,
+  communityPosts:communityPostsReducer,
+  communityPost:communityPostReducer,
 })

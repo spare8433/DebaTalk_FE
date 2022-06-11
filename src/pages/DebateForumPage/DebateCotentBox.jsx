@@ -1,4 +1,4 @@
-import { getPostAPI } from '@api/post'
+import { getPostsAPI } from '@api/post'
 import { ImgBox } from '@styles/commonStyle'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
@@ -68,7 +68,7 @@ const DebateCotentBox = () => {
       }
       
       //  검색 내용 반영해서 데이터 가져와야함 
-      const { data } = await getPostAPI(querry);
+      const { data } = await getPostsAPI(querry);
       console.log(data);
       setPostContent(data.map((res,index)=>{
         return <PostBox key={'debatePostItmes'+index} onClick={()=>navigate('./detail-debatepost',{ state: { id:res.id}})}>

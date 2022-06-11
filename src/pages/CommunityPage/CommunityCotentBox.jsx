@@ -1,9 +1,11 @@
-import { getPostAPI } from '@api/post'
+import { getPostsAPI } from '@api/post'
 import { FitImgBox } from '@styles/commonStyle'
 import React, { memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import dompurify from 'dompurify'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCommunityPostsRequest } from '@store/communityPosts/communityPosts.actions'
 
 const IndexContainor = styled.div`
   width: 100%;
@@ -16,8 +18,6 @@ const CotentBox = styled.div`
   padding:10px 30px 20px;
   box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
 ` 
-
-
 
 const PostBox = styled.div`
   display: flex;
@@ -74,56 +74,53 @@ const DetailInfoLine = styled.div`
 `
 
 
-const CommunityCotentBox = () => {
+const CommunityCotentBox = ({category,subCategory}) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const [postContent,setPostContent] = useState(null)
+  const posts = useSelector(state => state.communityPosts)
 
-  useEffect( ()=>{
-    const fetchContent = async () => {
-
-      const querry = {
-        limit:12,
-        skip:12
-      }
-      
-      //  커뮤니티 검색 내용 반영해서 데이터 가져와야함 
-      const { data } = await getPostAPI(querry);
-      console.log(data);
-      setPostContent(data.map((res,index)=>{
-        return <PostBox key={'debatePostItmes'+index} onClick={()=>navigate('./detail-communitypost',{ state: { id:res.id}})}>
-          <TextBox>
-
-            <TitleLine>
-              <span>과학 / it</span>
-              <h3>인터넷은 사회의 발전을 저해하는 도구인가</h3>
-              <p>[23]</p>
-            </TitleLine>
-
-            <DetailInfoLine>
-              <p>닉네임</p>          
-              <p>3시간전</p>
-              <p>추천수</p>
-              <p>조회수</p>
-            </DetailInfoLine>         
-          </TextBox>
-
-          <FitImgBox shadow='true' width='100' height='60'><img src={res.imgUrl === 'default' ? '/img/default-thumbnail.png' : res.imgUrl} alt=''></img></FitImgBox>
-          
-        </PostBox>
-      }))
+  useEffect( ()=>{  
+    const querry = {
+      limit:12,
+      skip:0,
+      key:subCategory,
+      category
     }
 
-    fetchContent();
+    if (posts.communityPostDatas !== null) return;
+    dispatch( getCommunityPostsRequest( {...querry} ))
+  },[])
 
-  },[navigate])
-
-  
-
+  console.log(posts);
+    
   return (
     <IndexContainor>
       <CotentBox>
-        {postContent !== null && postContent}
+
+        {posts.communityPostDatas !== null && posts.communityPostDatas.map((res,index)=>{
+          return <PostBox key={'communityPostItmes'+index} onClick={()=>navigate('./detail-communitypost',{ state: { id:res.id}})}>
+            <TextBox>
+
+              <TitleLine>
+                <span>{res.category}</span>
+                <h3>{res.title}</h3>
+                <p>[{res.comments.length}]</p>
+              </TitleLine>
+
+              <DetailInfoLine>
+                <p>닉네임</p>
+                <p>{res.createDate}</p>
+                <p>추천수 {res.likeList.length - res.unlikeList.length}</p>
+                <p>조회수 {res.hits}</p>
+              </DetailInfoLine>
+            </TextBox>
+
+            <FitImgBox shadow='true' width='100' height='60'><img src={res.imgUrl === 'default' ? '/img/default-thumbnail.png' : res.imgUrl} alt=''></img></FitImgBox>
+            
+          </PostBox>
+        })}
+
       </CotentBox>
     </IndexContainor>
   )

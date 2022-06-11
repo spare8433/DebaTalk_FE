@@ -1,4 +1,4 @@
-import { getPostAPI } from '@api/post'
+import { getPostsAPI } from '@api/post'
 import { FitImgBox } from '@styles/commonStyle'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
@@ -83,7 +83,7 @@ export const DebateTopicContentBox = () => {
       }
       
       //  검색 내용 반영해서 데이터 가져와야함 
-      const { data } = await getPostAPI(querry);
+      const { data } = await getPostsAPI(querry);
 
       setPostContent(data.map((res,index)=>{
         return <PostBox>

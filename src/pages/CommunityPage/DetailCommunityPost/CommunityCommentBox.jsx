@@ -1,6 +1,10 @@
-import { CircleImgBox, ImgBox } from '@styles/commonStyle'
-import React from 'react'
+import { getCommunityPostRequest } from '@store/communityPost/communityPost.actions'
+import { fetchUserProfileRequest } from '@store/user/user.actions'
+import { BasicButtonBox, CircleImgBox, ImgBox, MainButton, SubButton } from '@styles/commonStyle'
+import React, { useEffect,useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import WriteComment from './WriteComment'
 
 
 const IndexContainor = styled.div`
@@ -13,7 +17,9 @@ const ContentContainor = styled.div`
 const ContentHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 8px 20px 16px;
+  padding: 8px 0 16px;
+  margin: 0 20px;
+  border-bottom: 1px solid ${({theme})=> theme.colors.gray_2};;
   h2 {
     font-size: 18px;
     font-weight: 500;
@@ -30,10 +36,13 @@ const ContentHeader = styled.div`
 const CommentsBox = styled.div`
   
 `
-const CommentItem = styled.div`
-  
-`
+  const WriteCommentBox = styled.div`
+    padding:20px;
+  `
 
+  const CommentItem = styled.div`
+    
+  ` 
   const PostBox = styled.div`
     display: flex;
     flex-direction: column;
@@ -86,9 +95,27 @@ const CommentItem = styled.div`
       border-left: 1px solid #c5cbd0;
       border-bottom: 1px solid #c5cbd0;
     `
+    const WriteReplyBox = styled(ReplyItem)`
+    
+    `
+
 
 export const CommunityCommentBox = () => {
-  
+  const user = useSelector((state)=> state.user)
+	const dispatch = useDispatch()
+
+	// useEffect(() => {
+	// 	console.log(1);
+	// 	if (user.myData !== null) return; // 포스트가 존재하면 아예 요청을 하지 않음
+  //   dispatch(fetchUserProfileRequest())
+	// 	console.log(2);
+	// }, [])
+
+  const testOnReply = (e) => {
+    console.log(e)
+  }
+
+  console.log(user);
 
   return (
     <IndexContainor>
@@ -101,8 +128,14 @@ export const CommunityCommentBox = () => {
         
         {/* 댓글 리스트 박스 */}
         <CommentsBox>
-          <CommentItem>
 
+          {/* 댓글 작성 부분 */}
+          <WriteCommentBox>
+            <WriteComment type='comment' />
+          </WriteCommentBox>
+
+          {/* 댓글 리스트 */}
+          <CommentItem>
             <PostBox>
               <ProfileLine>
                 <CircleImgBox><img src="" alt="" /></CircleImgBox>
@@ -119,7 +152,7 @@ export const CommunityCommentBox = () => {
                 </InteractButtonItem>
 
                 <InteractButtonItem>
-                  <ImgBox></ImgBox><span>답글</span>
+                  <ImgBox></ImgBox><span onClick={(e)=> testOnReply(e)}>답글</span>
                 </InteractButtonItem>
 
                 <InteractButtonItem>
@@ -133,6 +166,12 @@ export const CommunityCommentBox = () => {
             {/* 답글 리스트 박스 */}
             <RepliesBox>
 
+              {/* 답글 작성 부분 */}
+              <WriteReplyBox>
+                <WriteComment type='reply' />
+              </WriteReplyBox>
+
+              {/* 답글 리스트 */}
               <ReplyItem>
                 <ProfileLine>
                   <CircleImgBox><img src="" alt="" /></CircleImgBox>
