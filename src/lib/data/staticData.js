@@ -13,3 +13,12 @@ export const DebateCategoryMenus = [
 export const DebateModeMenus = [
   '전체','주제토론','찬반토론','끝장토론'
 ];
+
+export const ReportCategory = [
+  '광고 및 거래에 관한 내용',
+  '성적인 내용',
+  '폭력적 또는 혐오스러운 내용',
+  '특정대상을 증오 또는 비방하는 내용',
+  '분쟁 유발하는 내용',
+  '스팸 또는 오해의 소지가 있는 내용'
+]

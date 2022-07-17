@@ -1,5 +1,5 @@
 import { ImgBox } from '@styles/commonStyle'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { CommunityCommentBox } from './CommunityCommentBox'
 import dompurify from 'dompurify'
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCommunityPostRequest } from '@store/communityPost/communityPost.actions'
 import { useLocation } from 'react-router-dom'
 import { css } from 'styled-components'
+import ReportModal from '@components/ReportModal'
 
 const IndexContainor = styled.div`
   width: 100%;
@@ -123,6 +124,11 @@ const DetailCommunityPost = () => {
 
   const { communityPostData } = useSelector(state => state.communityPost)
 
+  const [reportModalOption,setReportModalOption] = useState({
+    turnOn:false,
+    contentType:''
+  })
+
   console.log(location.state.id);
   console.log(communityPostData);
 
@@ -133,12 +139,15 @@ const DetailCommunityPost = () => {
 
   return (
     <IndexContainor>
+
+      { reportModalOption.turnOn ? <ReportModal setter={setReportModalOption} option={reportModalOption} /> : '' }
+
       <ContentContainor>
 
         <ContentHeader>
           <TitleLine>
             <h1>{!!communityPostData && communityPostData.title}</h1>
-            <span>신고</span>
+            <span onClick={()=>{setReportModalOption({turnOn:true, contentType:'커뮤니티 게시물'});}}>신고</span>
           </TitleLine>
 
           <PostInfoLine>
