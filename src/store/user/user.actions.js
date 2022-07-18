@@ -15,13 +15,13 @@ export const logInFailure = (error) => ({
   error
 })
 
-export const fetchUserProfileRequest = (data) => ({
-  type: actions.FETCH_USER_PROFILE_REQUEST,
-  data
+export const fetchUserProfileRequest = () => ({
+  type: actions.FETCH_USER_PROFILE_REQUEST
 })
 
-export const fetchUserProfileSuccess = () => ({
-  type: actions.FETCH_USER_PROFILE_SUCCESS
+export const fetchUserProfileSuccess = (data) => ({
+  type: actions.FETCH_USER_PROFILE_SUCCESS,
+  data
 })
 
 export const fetchUserProfileFailure = (error) => ({

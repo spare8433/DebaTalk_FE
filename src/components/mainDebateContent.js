@@ -48,14 +48,14 @@ export const MainDebateContent = () => {
           {test01.content.map((content,index) =>{
             if(index === 0)
               return (
-                <MainContent>
+                <MainContent key={'mainContentItem' + index}>
                   {/* 메인콘텐츠 */}
                   <h2>메인콘텐츠 부분 : {content.name}</h2>
                 </MainContent>
               )
             else
               return (
-                <SubContentBox>
+                <SubContentBox key={'subContentItem' + index}>
                   {/* 서브콘텐츠 */}
                   <h2>{content.name}</h2>
                 </SubContentBox>

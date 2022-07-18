@@ -48,6 +48,7 @@ function* fetchProfile() {
 	try {
 		const user = yield call(getUserAPI)
 		console.log('get profile api requset success');
+		console.log(user.data);
 		yield put( fetchUserProfileSuccess(user.data) );
 		console.log('fetch user profile success');
 	} catch (error) {
