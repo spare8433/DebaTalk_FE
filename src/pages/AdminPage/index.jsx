@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import { Routes, Route, useNavigate,useLocation } from 'react-router-dom';
 import Profile from '@components/Profile';
 import { SlideMenu } from '@components/slideMenu';
-import { WritePost } from './manageDebatePost/writeDebatePost';
+import WritePost from './manageDebatePost/writeDebatePost';
+import ReportList from './manageReport/ReportList';
 
 const AdminContainor = styled.div`
   height: 100%;
@@ -160,7 +161,7 @@ const AdminPage = () => {
                     </SlideMenuTitle>
                   }>
                   <SlideMenuList>
-                    <p>신고 쓰기</p>
+                    <p onClick={()=> handleListClick('reportList')}>신고 현황</p>
                   </SlideMenuList>
 
                 </SlideMenu>
@@ -182,6 +183,7 @@ const AdminPage = () => {
             
               <Routes>
                 <Route path="writePost" element={<WritePost />} />
+                <Route path="reportList/*" element={<ReportList />} />
               </Routes>
             
 

@@ -27,7 +27,7 @@ const EditBox = styled.div`
  }
 `
  
-export const WritePost = () => {
+const WritePost = () => {
   const [title,onChangeTitle] = useInput('')
   const [content, setContent] = useState('');
   const [category, onChangeCategory] = useInput('주제토론');
@@ -83,3 +83,5 @@ export const WritePost = () => {
     </Containor>
   )
 }
+
+export default WritePost

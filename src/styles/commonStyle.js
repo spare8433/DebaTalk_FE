@@ -162,6 +162,7 @@ export const BasicButton = styled.button`
   font-size: ${({fontSize})=> fontSize +'px'};
   box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
   border-radius:5px;
+  font-weight: 600;
   cursor: pointer;
 `
 
@@ -169,7 +170,6 @@ export const MainButton = styled(BasicButton)`
   background-color: ${({theme})=>theme.colors.main};
   color: white;
   border: 0;
-  font-weight: 600;
 `
 
 export const SubButton = styled(BasicButton)`
