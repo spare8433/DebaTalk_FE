@@ -82,7 +82,7 @@ const ProfilePage = () => {
   // 2
   const [isDisableSubmit,setIsDisableSubmit] = useState(true)
 
-  const { meData } = useSelector(state=> state.user);
+  const { myData } = useSelector(state=> state.user);
   const dispatch = useDispatch()
 
   // console.log('이런식이면 사이트가 두번 도는 거지요?');
@@ -113,7 +113,7 @@ const ProfilePage = () => {
   const onSaveImage = () =>{
     const formdata = new FormData();
     formdata.append('image',imageFile[0])
-    // dispatch(setUser({...meData, imgUrl: previewImage}))
+    // dispatch(setUser({...myData, imgUrl: previewImage}))
     uploadUserImageAPI(formdata);
     // setIsDisableSubmit(true);
   }
@@ -143,21 +143,21 @@ const ProfilePage = () => {
 
           <h3>닉네임</h3>
           <ChangeNickNameBox>
-            <p>{meData.nickname}</p>
+            <p>{myData.nickname}</p>
             
           </ChangeNickNameBox>
           
           <h3>아이디</h3>
-          <p>{meData.userId}</p>
+          <p>{myData.userId}</p>
 
           <h3>이메일</h3>
-          <p>{meData.email}</p>
+          <p>{myData.email}</p>
 
           <h3>생성일자</h3>
-          <p>{meData.createDate}</p>
+          <p>{myData.createDate}</p>
 
           <h3>레벨 | 포인트</h3>
-          <p>{meData.level +' lv | ' + meData.point + ' point'}</p>
+          <p>{myData.level +' lv | ' + myData.point + ' point'}</p>
 
         </InformationBox>
         
