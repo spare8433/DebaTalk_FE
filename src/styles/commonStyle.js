@@ -226,3 +226,12 @@ export const InputBox = styled.div`
     font-weight:300;
   }
 `
+
+export const SelectBox = styled(InputBox)`
+margin-left:10px; 
+  select{
+    color:${({theme})=> theme.colors.gray_1};
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+`

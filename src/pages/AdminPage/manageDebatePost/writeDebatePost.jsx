@@ -3,21 +3,12 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { BasicInput } from '@components/basicInput'
 import useInput from '@hooks/useInput'
-import { BasicButtonBox, Containor, InputBox, MainButton } from '@styles/commonStyle'
+import { BasicButtonBox, Containor, MainButton, SelectBox } from '@styles/commonStyle'
 import Editor from '@components/Editor'
 import { createDebatePostAPI } from '@api/debatePost'
 
 const TopInputBox = styled.div`
   display: flex;
-`
-
-const SelectBox = styled(InputBox)`
-margin-left:10px; 
-  select{
-    color:${({theme})=> theme.colors.gray_1};
-    padding-right: 8px;
-    padding-left: 8px;
-  }
 `
 
 const EditBox = styled.div`
