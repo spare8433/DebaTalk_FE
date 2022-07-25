@@ -6,6 +6,7 @@ import Profile from '@components/Profile';
 import { SlideMenu } from '@components/slideMenu';
 import WritePost from './manageDebatePost/writeDebatePost';
 import ReportList from './manageReport/ReportList';
+import UserList from './manageUser/UserList';
 
 const AdminContainor = styled.div`
   height: 100%;
@@ -130,7 +131,7 @@ const AdminPage = () => {
                     </SlideMenuTitle>
                   }>
                   <SlideMenuList>
-                    <p>테스트</p>
+                    <p onClick={()=> handleListClick('user-list')}>사용자 리스트</p>
                   </SlideMenuList>
 
                 </SlideMenu>
@@ -146,7 +147,7 @@ const AdminPage = () => {
                       </SlideMenuTitle>
                     }>
                     <SlideMenuList>
-                      <p onClick={()=> handleListClick('writePost')}>글 쓰기</p>
+                      <p onClick={()=> handleListClick('write-post')}>글 쓰기</p>
                     </SlideMenuList>
 
                 </SlideMenu>  
@@ -161,7 +162,7 @@ const AdminPage = () => {
                     </SlideMenuTitle>
                   }>
                   <SlideMenuList>
-                    <p onClick={()=> handleListClick('reportList')}>신고 현황</p>
+                    <p onClick={()=> handleListClick('report-list')}>신고 현황</p>
                   </SlideMenuList>
 
                 </SlideMenu>
@@ -182,8 +183,9 @@ const AdminPage = () => {
           <ContentBox>
             
               <Routes>
-                <Route path="writePost" element={<WritePost />} />
-                <Route path="reportList/*" element={<ReportList />} />
+                <Route path="write-post" element={<WritePost />} />
+                <Route path="report-list/*" element={<ReportList />} />
+                <Route path="user-list/*" element={<UserList />} />
               </Routes>
             
 
