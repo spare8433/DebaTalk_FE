@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Header } from '@components/Header';
 
 import { MainCarousel } from './mainCarousel'
-import { MainDebateContent } from '@components/mainDebateContent'
+import { MainDebateContent } from 'pages/MainHomePage/MainDebateContent'
 import { MainSearch } from '@components/MainSearch'
 import { RecentReaction } from '@components/recentReaction'
 

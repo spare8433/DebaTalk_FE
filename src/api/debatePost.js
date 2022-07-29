@@ -4,7 +4,7 @@ import {instanceWithAuth} from './index'
 export const createDebatePostAPI = data => instanceWithAuth('debate-posts').post('create',data)
 
 // debate-post 불러오기
-export const getDebatePostAPI = querry => instanceWithAuth('debate-posts').get(
+export const getDebatePostsAPI = querry => instanceWithAuth('debate-posts').get(
   `all?limit=${querry.limit}&skip=${querry.skip}&key=${querry.key}&title=${querry.title}&category=${querry.category}`
 )
 

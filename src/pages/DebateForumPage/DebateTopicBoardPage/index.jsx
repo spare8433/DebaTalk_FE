@@ -1,7 +1,7 @@
 import { Header } from '@components/Header'
 import  NavLinkList  from '@components/NavLinkList'
 import { DebateCategoryMenus } from '@data/staticData'
-import { BasicSearchBox, BasicSelectBox, HeaderInfoBox, ImgBox, Line, TitleBox } from '@styles/commonStyle'
+import { BasicSearchBox, BasicSelectBox, HeaderInfoBox, ImgBox, Line } from '@styles/commonStyle'
 import React from 'react'
 import styled from 'styled-components'
 import { DebateTopicContentBox } from './DebateTopicContentBox'
@@ -63,8 +63,9 @@ const DebateTopicBoardPage = () => {
         <CategoryBox>
           <h2 style={{"fontSize":"26px"}}>카테고리</h2>
 
-          <NavLinkList width='100%' category='debateCategory' key='b'>
-                  {DebateCategoryMenus.map((res) => {return <CategoryItem key={'debateCategoryItems'+res} value={res}>{res}</CategoryItem>})}
+          <NavLinkList width='100%' category='debateCategory' items={DebateCategoryMenus.map((res) => {return <CategoryItem key={'debateCategoryItems'+res} value={res}>{res}</CategoryItem>})}>
+            <CategoryItem value='전체'>전체</CategoryItem>
+
           </NavLinkList>
         </CategoryBox>
         
