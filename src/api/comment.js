@@ -1,7 +1,7 @@
 import {instance,instanceWithAuth} from './index'
 
-// 로그인 api
-// export const getPostsAPI = () => instance('comments').get('all')
+// 댓글 작성
+export const createCommentAPI = (req) => instanceWithAuth('comments').post(`${req.postId}`,req.data)
 
 
 // //회원가입 api

@@ -4,6 +4,10 @@ import { Containor, ImgBox } from '@styles/commonStyle'
 import styled from 'styled-components'
 import { useLocation } from 'react-router-dom'
 import { getOnePostAPI } from '@api/post'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { getDebatePostRequest } from '@store/debatePost/debatePost.actions'
+import WriteComment from '@components/WriteComment'
 
 const IndexContainor = styled(Containor)`
   
@@ -62,6 +66,7 @@ const RelatedPostsBox = styled.div`
 const DebateRulesBox = styled.div`
   background-color: white;
   padding: 20px 80px;
+  margin-bottom: 20px;
   h3{
     font-size: 22px;
     font-weight:500;
@@ -74,21 +79,17 @@ const DebateRulesBox = styled.div`
 `
 
 const DetailDebatePage = () => {
+  const dispatch = useDispatch();
   const sanitizer = dompurify.sanitize;
-  const {state} = useLocation();
-  const { id } = state;
+  const location = useLocation();
+  console.log(location);
+  const { id } = location.state;
 
-  const [postData,setPostData] = useState(null)
+  const debatePost = useSelector(state=> state.debatePost)
 
   useEffect(()=>{
-    const fetchPostData = async ()=> {
-      console.log(id);
-      const {data} = await getOnePostAPI(id)
-      setPostData(data);
-      console.log(data);
-    }
-    
-    fetchPostData()
+    if(debatePost.debatePostData !== null) return
+    dispatch( getDebatePostRequest(id) )
   },[id])
   
 
@@ -100,11 +101,11 @@ const DetailDebatePage = () => {
         {/* 타이틀 부분 박스 */}
         <PostHeaderBox>
 
-          <h1>{postData !== null && postData.title}</h1>
+          <h1>{debatePost.debatePostData !== null && debatePost.debatePostData.title}</h1>
 
           <HeaderCategoryLine>
 
-            <span>[{postData !== null && postData.createDate + ' - ' + postData.category + ' - ' + 3}]</span>
+            <span>[{debatePost.debatePostData !== null && debatePost.debatePostData.createDate + ' - ' + debatePost.debatePostData.category + ' - ' + 3}]</span>
 
             <HeaderButtonBox>
               <ImgBox></ImgBox>
@@ -124,7 +125,7 @@ const DetailDebatePage = () => {
 
         {/* html 형식 내용*/}
         <PostContentBox 
-          dangerouslySetInnerHTML={ {__html: sanitizer(postData !== null && postData.content)} }
+          dangerouslySetInnerHTML={ {__html: sanitizer(debatePost.debatePostData !== null && debatePost.debatePostData.content)} }
         ></PostContentBox>
 
         {/* 관련 포스트 추천 박스*/}
@@ -143,10 +144,9 @@ const DetailDebatePage = () => {
           </p>
         </DebateRulesBox>
 
-        {/* 댓글 작성 창 (따로 컴포넌트) */}
-        <>
-          
-        </>
+        <WriteComment postId={ debatePost.debatePostData !== null && debatePost.debatePostData.id} option={ {
+          voteOn :debatePost.debatePostData !== null && debatePost.debatePostData.category === '찬반토론' ? true : false 
+        } }  />
 
       </DetailDevateContainor>
     </IndexContainor>

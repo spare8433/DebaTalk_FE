@@ -6,6 +6,7 @@ import { css } from 'styled-components'
 const NavContainor = styled(Containor)`
   display: flex;
   padding: 0 10px;
+  width: 100%;
 `
 const Itmes = styled.div`
   a{
@@ -25,10 +26,16 @@ const Itmes = styled.div`
 `
 
 
-const NavLinkList = ({width,onClick,children,value,category}) => {
+const NavLinkList = ({children,onClick,value,category,items}) => {
+  console.log(children);
   return (
-    <NavContainor width={width}>
-      {children.map((res,index)=>{ 
+    <NavContainor>
+
+      <Itmes current={value===children.props.value} onClick={()=>{
+        onClick(children.props.value)
+      }}>{children}</Itmes>
+
+      {items.map((res,index)=>{ 
         return <Itmes key={category + 'Items' + index} current={value===res.props.value} onClick={()=>{
           onClick(res.props.value);
         }}>

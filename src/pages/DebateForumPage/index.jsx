@@ -76,20 +76,33 @@ const DebateForumPage = () => {
             <CategoryBox>
               <h2 style={{"fontSize":"26px"}}>토론 분류</h2>
               
-              <NavLinkList width='100%' onClick={setDebateMode} value={debateMode} category='debateMethod' key='a'>
-                {/* <ModeItem current={debateMode === '전체'}>전체</ModeItem>
-                <ModeItem current={debateMode === '주제토론'}>주제토론</ModeItem>
-                <ModeItem current={debateMode === '찬반토론'}>찬반토론</ModeItem>
-                <ModeItem current={debateMode === '배틀토론'}>배틀토론</ModeItem> */}
-    
-                {DebateModeMenus.map((res) => {return <ModeItem key={'debateModeItems'+res} value={res}>{res}</ModeItem>})}
+              <NavLinkList 
+                onClick={setDebateMode} 
+                value={debateMode} 
+                category='debateMethod'
+                items={
+                  DebateModeMenus.map((res,index) => {
+                    return <ModeItem key={'debateModeItems_'+(index+1)} value={res}>{res}</ModeItem>
+                  })
+                }
+              >
+                <ModeItem value='전체'>전체</ModeItem>
               </NavLinkList>
     
     
               <h2 style={{"fontSize":"22px"}}>카테고리</h2>
                 
-              <NavLinkList width='100%' onClick={setDebateCategory} value={debateCategory} category='debateCategory' key='b'>
-                {DebateCategoryMenus.map((res) => {return <CategoryItem key={'debateCategoryItems'+res} value={res}>{res}</CategoryItem>})}
+              <NavLinkList  
+                onClick={setDebateCategory} 
+                value={debateCategory} 
+                category='debateCategory' 
+                items={
+                  DebateCategoryMenus.map((res,index) => {
+                    return <CategoryItem key={'debateCategoryItems'+(index + 1)} value={res}>{res}</CategoryItem>
+                  })
+                }
+              >
+                <CategoryItem value='전체'>전체</CategoryItem>
               </NavLinkList>
             </CategoryBox>
     

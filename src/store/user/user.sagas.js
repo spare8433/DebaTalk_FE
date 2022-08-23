@@ -34,6 +34,7 @@ function* logIn(action) {
   } catch (error) {
 		console.error(error)
     yield put( logInFailure(error) );
+		alert('로그인에 실패하셨습니다')
 		console.log('login fail');
   }
 }
@@ -109,4 +110,4 @@ function* watchSignUp() {
 
 export default function* userSaga() {
 	yield all([fork(watchLogIn), fork(watchFetchProfile), fork(watchSignUp), fork(watchLogOut)])
-}
+} 

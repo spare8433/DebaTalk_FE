@@ -1,6 +1,7 @@
 import { getHotDebateTopicListRequest } from '@store/hotDebateTopicList/hotDebateTopicList.actions'
 import {React, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import {FitImgBox, StyledCategory, Title} from '../../styles/commonStyle'
 
@@ -129,12 +130,13 @@ const VoteInfoLine = styled.div`
 
 export const MainDebateContent = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const hotDebateTopicList = useSelector(state=>state.hotDebateTopicList);
 
   const createMainContent = (data) => {
     return ( 
-    <MainContent>
+    <MainContent onClick={()=>navigate('./debate-forum/detail-debatepost',{ state: { id:data.id}})}>
         <ContentLine>
           <Category>{data.category}</Category>
           <h2>{data.title}</h2>
@@ -160,7 +162,7 @@ export const MainDebateContent = () => {
           if(index === 0) 
             return createMainContent(res)
           else return(
-            <SubjectSubContentBox>
+            <SubjectSubContentBox onClick={()=>navigate('./debate-forum/detail-debatepost',{ state: { id:res.id}})}>
               <FitImgBox><img src={res.imgUrl === 'default' ? '/img/default-thumbnail.png' : res.imgUrl } alt="" /></FitImgBox>
               <ContentInfoBox>
                 <h3>{res.title}</h3>
@@ -177,7 +179,7 @@ export const MainDebateContent = () => {
           if(index === 0) 
             return createMainContent(res)
           else return(
-            <ProsConsSubContentBox>
+            <ProsConsSubContentBox onClick={()=>navigate('./debate-forum/detail-debatepost',{ state: { id:res.id}})}>
                 <h3>{res.title}</h3>
             
                 <VoteGauge><BlueGauage width='70'/></VoteGauge>
@@ -200,7 +202,7 @@ export const MainDebateContent = () => {
           if(index === 0) 
             return createMainContent(res)
           else return(
-            <ProsConsSubContentBox>
+            <ProsConsSubContentBox onClick={()=>navigate('./debate-forum/detail-debatepost',{ state: { id:res.id}})}>
                 <h3>{res.title}</h3>
             
                 <VoteGauge><BlueGauage width='70'/></VoteGauge>

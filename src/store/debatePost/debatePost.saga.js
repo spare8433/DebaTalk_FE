@@ -13,19 +13,19 @@ import { GET_DEBATE_POST_REQUEST } from './debatePost.types';
 
 function* getOneDebatePost(action) {
 	console.log(action);
-	console.log('GET DEBATE POST LIST requset');
+	console.log('GET DEBATE POST requset');
   try {
-		console.log('GET DEBATE POST LIST start');
+		console.log('GET DEBATE POST start');
     const { data } = yield call(getOneDebatePostAPI,action.req);
-		console.log('GET DEBATE POST LIST api request success');
+		console.log('GET DEBATE POST api request success');
 
     yield put( getDebatePostSuccess(data) );
-		console.log('GET DEBATE POST LIST success');
+		console.log('GET DEBATE POST success');
 		
   } catch (error) {
 		console.error(error)
     yield put( getDebatePostFailure(error) );
-		console.log('GET DEBATE POST LIST fail');
+		console.log('GET DEBATE POST fail');
   }
 }
 

@@ -9,4 +9,4 @@ export const getDebatePostsAPI = querry => instanceWithAuth('debate-posts').get(
 )
 
 // debate-post 특정 게시물 가져오기
-export const getOneDebatePostAPI = id => instanceWithAuth('debate-posts').get(`?${id}`)
+export const getOneDebatePostAPI = id => instanceWithAuth('debate-posts').get(`one/${id}`)
